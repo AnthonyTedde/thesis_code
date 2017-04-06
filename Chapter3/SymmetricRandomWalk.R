@@ -47,7 +47,13 @@ Mt <- data.frame(matrix(rep(0, (size + 1)^2), nrow = size + 1))
 for(i in 1:size)
   for(j in 0:(i - 1))
     Mt[j+1,i] <- (i - 1) - 2*j
-  
+
+# Construction of the distribution of the theoretical random variable
+fi <- data.frame(matrix(rep(0, (size + 1)^2), nrow = size + 1))
+for(j in 1:size)
+  for(i in 1:j)
+    fi[i, j] <- choose((j-1), (i-1)) * p^(j-1)#((j-1)*p^(j-1))/(factorial(j-1)*factorial(1+i))
+
 
 ########################################
 # Create a 300 steps random walk
