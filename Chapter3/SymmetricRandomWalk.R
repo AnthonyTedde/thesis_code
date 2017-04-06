@@ -60,6 +60,12 @@ png(filename = 'SymmRandWalkTheoretiaclDistrib.png')
 plot(Mt[1:300, 300],fi[1:300, 300], type = 'l', xlim = c(-75, 75))
 dev.off()
 
+# Expectation
+# E[M200] should equal zero because:
+# M0 = 0 and Because Mt is a martingale thus:
+# E[M200|f(0)] = E[M200] - 0
+EM200 = sum(Mt[1:200, 200] * fi[1:200, 200]) # equal zero.
+
 
 ########################################
 # Create a 300 steps random walk
