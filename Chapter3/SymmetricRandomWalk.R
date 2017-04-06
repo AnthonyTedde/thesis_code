@@ -54,6 +54,12 @@ for(j in 1:size)
   for(i in 1:j)
     fi[i, j] <- choose((j-1), (i-1)) * p^(j-1)#((j-1)*p^(j-1))/(factorial(j-1)*factorial(1+i))
 
+# Theoretical distribution
+
+png(filename = 'SymmRandWalkTheoretiaclDistrib.png')
+plot(Mt[1:300, 300],fi[1:300, 300], type = 'l', xlim = c(-75, 75))
+dev.off()
+
 
 ########################################
 # Create a 300 steps random walk
