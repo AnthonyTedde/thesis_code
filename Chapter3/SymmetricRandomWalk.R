@@ -66,6 +66,28 @@ dev.off()
 # E[M200|f(0)] = E[M200] - 0
 EM200 = sum(Mt[1:200, 200] * fi[1:200, 200]) # equal zero.
 
+# Expectation of Mt_l at k
+# denoted by: E[Mt_l|f(k)], with k < l
+from <- 2
+k <- 4
+l <- 6
+Mt[from:(from+l-k), k:l]
+df <- data.frame(matrix(
+  rep(0, (l-k+1)^2),
+  nrow = (l-k+1)
+))
+for(i in from:(from+(l-k))) # ROWS
+  for(j in k:l) # COLUMNS
+    df[i - from + 1, j - k +1] <- Mt[i, j]
+fi <- data.frame(matrix(rep(0, (l-k + 1)^2), nrow = l-k + 1))
+for(j in 1:(l-k+1))
+  for(i in 1:j)
+    fi[i, j] <- choose((j-1), (i-1)) * p^(j-1)#((j-1)*p^(j-1))/(factorial(j-1)*factorial(1+i))
+# Finally compute the expectation E[Mt_l|f(k)]:
+sum(df[, l-k+1] * fi[, l-k+1]) #Yeah it is a fucking matringale
+
+
+    
 
 ########################################
 # Create a 300 steps random walk
