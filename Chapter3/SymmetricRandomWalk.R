@@ -130,9 +130,6 @@ for(j in 1:(l-k+1))
 # Finally compute the expectation E[Mt_l|f(k)]:
 sum(df[, l-k+1] * fi[, l-k+1]) #Yeah it is a fucking matringale
 
-
-    
-
 ########################################
 # Create a 300 steps random walk
 ########################################
