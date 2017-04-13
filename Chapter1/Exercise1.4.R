@@ -31,6 +31,14 @@ for(j in seqn)
 X <- rowSums(Yn)
 X[order(X)]
 
+####
+# Check Probability measure
+####
+m <- 3000
+k <- 10
+(m/2^n) - (k/2^n)
+
+length(X[X < (m/2^n) & X > (k/2^n)]) / length(X)
 
 
 
