@@ -13,18 +13,22 @@ gc()
 ##
 # Initialisation
 ##
-n <- 3
+n <- 15
 Yn <- paste0('Y', n)
 
 l <- rep(list(0:1), n)
-assign(Yn,
-       expand.grid(l))
+# assign(Yn,
+#        expand.grid(l))
+Yn <- expand.grid(l)
 
-for(j in seq_len(n))
-  for(i in seq_len(2^n))
-    Y3[i,j] <- Y3[i,j] / 2 ^ j
+seqn <- seq_len(n)
+seq2n <- seq_len(2^n)
 
-X <- rowSums(get(Yn))
+for(j in seqn)
+  for(i in seq2n)
+    Yn[i,j] <- Yn[i,j] / 2 ^ j
+ 
+X <- rowSums(Yn)
 X[order(X)]
 
 
