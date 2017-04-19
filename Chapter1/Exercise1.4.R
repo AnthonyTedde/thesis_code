@@ -14,7 +14,6 @@ gc()
 # Initialisation
 ##
 n <- 15
-Yn <- paste0('Y', n)
 
 l <- rep(list(0:1), n)
 # assign(Yn,
@@ -39,6 +38,10 @@ k <- 10
 (m/2^n) - (k/2^n)
 
 length(X[X < (m/2^n) & X > (k/2^n)]) / length(X)
+
+####
+# Transform the random variable uniformly distributed to a standard normal distributed random variable
+####
 
 
 
