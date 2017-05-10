@@ -28,11 +28,18 @@ gc()
 ##
 # Initialisation
 ##
+
+# Probability measure:
 p <- 1/2
 q <- 1 - p
 size <- 300
 spread <- 3000
 M <- 0
+ ### 
+# Mt and fi are dataframe with size = (size + 1) * (size + 1)
+# All value inside Mt and fi are zero.
+# check ate Initialisation section for size value.
+### 
 Mt <- fi <- data.frame(matrix(rep(0, (size + 1)^2), nrow = size + 1))
 l <- 300
 k <- 200

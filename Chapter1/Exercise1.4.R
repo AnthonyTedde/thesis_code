@@ -42,6 +42,8 @@ length(X[X < (m/2^n) & X > (k/2^n)]) / length(X)
 ####
 # Transform the random variable uniformly distributed to a standard normal distributed random variable
 ####
+# First step: reverse the Cumulative Normal Distribution
+
 
 
 
