@@ -1,0 +1,56 @@
+\documentclass{article}
+\usepackage{amsmath}
+
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+
+\section{Description}
+The symetric random walk will be described in this document (Mt). it covers the theory of "Stochastic Calculus for finance" Tome 2 chapter 3 section 1.
+
+The construction of the random walk depend on the evolution of a random variable $X_i$. The previous RV can take two value at each time, like tossing a coin. $X_i$ can take the value 1 or -1.
+
+\begin{equation}
+ \label{eq:Xi}
+X_i = 
+\left \{{
+  \begin{array}{c} 1 \\ -1 \end{array}
+  }\right .
+\end{equation}
+ 
+The Symetric Random Walk is constructed by summing up the different outcome of the random variable $X_i$ from $k$ experiments:
+
+\begin{equation}
+\label{eq:SRW}
+M_k = 
+\sum_{j=1}^k X_j
+\end{equation}
+
+In the following lines of code, $X_i$ is randomly difined. The variable $k$ ensure to have a sufficent number of periods to further generate the scaled random walk.
+It refers to the $k$ of equation~\ref{eq:SRW}.
+$p$ and $q$ are the probability measure, respectively $p$ chance to get value 1 and $q$ chance to get -1 from random variable $X_i$.
+
+<<echo=FALSE>>=
+p <- 0.5
+q <- 1 - p
+k <- 300
+##
+# Generation
+##
+X <- sample(x = c(-1, 1),
+            size = k,
+            replace = T,
+            prob = c(p, q)
+            )
+@
+
+After creating the random variable &X_i& it suffices to add up all the differente output we get from time 1 up to &k& to get a specific Symetric Random Walk.
+
+<<>>=
+
+@
+
+
+
+
+
+\end{document}

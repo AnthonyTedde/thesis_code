@@ -1,0 +1,39 @@
+---
+title: "Random Walks"
+author: "Anthony Tedde"
+date: "May 10, 2017"
+output: pdf_document
+---
+
+The symetric random walk will be described in this document (Mt).
+
+At a certain time t the random walk could take two different value:
+
+ * 1 with probability $0$
+ * 0 with probability $1 - p$
+ 
+So first of all the probability measure $p$ has to be defined:
+```{r echo=TRUE}
+p <- 1/2
+q <- 1 - p
+```
+
+Furthermore the period of measurement of the SRW has to be specified. I decide to examine the SRW accross a 300 steps period.
+```{r echo=TRUE}
+ size <- 300
+```
+
+# Construction of the Symetric Random Walk
+
+The first step consist on creating a zero squared matrix with size: $(size + 1) \times (size + 1)$:
+  
+\left[ {\begin{array}{ccccc}
+```{r}
+Mt <- data.frame(matrix(rep(0, (size + 1)^2), nrow = size + 1))
+l <- 300
+k <- 200
+```
+
+
+
+
