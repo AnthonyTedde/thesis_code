@@ -55,7 +55,8 @@ X <- sample(x = c(-1, 1),
 for(i in 1:size) 
   M[i + 1] <- sum(X[1:i]) # i + 1 because M[0] from theory is indeed represented by M[1] in this code.
 # Same result with apply type function:
-sapply(seq_along(X), function(x){sum(X[1:x])})
+M_k <- c(0, 
+         sapply(seq_along(X), function(x){sum(X[1:x])}))
 
 
 ##
