@@ -51,8 +51,13 @@ X <- sample(x = c(-1, 1),
             replace = T,
             prob = c(p, q)
             )
+# Following lines must be changed into apply type function:
 for(i in 1:size) 
   M[i + 1] <- sum(X[1:i]) # i + 1 because M[0] from theory is indeed represented by M[1] in this code.
+# Same result with apply type function:
+sapply(seq_along(X), function(x){sum(X[1:x])})
+
+
 ##
 # Check by plot
 ##
