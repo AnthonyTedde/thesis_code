@@ -30,11 +30,42 @@ In the following lines of code, $X_i$ is randomly difined. The variable $k$ ensu
 It refers to the $k$ of equation~\ref{eq:SRW}.
 $p$ and $q$ are the probability measure, respectively $p$ chance to get value 1 and $q$ chance to get -1 from random variable $X_i$.
 
-\begin{Schunk}
-\begin{Soutput}
-[1] 1
-\end{Soutput}
-\end{Schunk}
+
+
+
+After creating the random variable $X_i$ it suffices to add up all the differente output we get from time 1 up to $k$ to get a specific Symetric Random Walk.
+
+The following outcome present a randomly generated 300 steps symmetric random walk.
+
+\begin{table}[h]
+0 1 2 3 2 3 4 5 6 7 8 7 6 5 6 5 6 5 4 3 2 3 2 3 4 5 4 3 4 3 4 5 6 5 6 5 6 7 8 9 10 9 8 9 10 9 8 7 8 7 8 9 8 7 6 7 8 9 8 7 6 5 6 7 8 7 6 5 6 5 6 5 6 7 6 7 8 9 10 11 12 11 12 13 12 11 10 9 8 7 6 5 6 5 6 7 6 7 6 5 6 5 6 7 6 5 4 3 2 3 2 1 0 -1 0 -1 -2 -1 0 -1 -2 -1 -2 -1 0 -1 0 -1 -2 -3 -2 -3 -4 -3 -4 -3 -4 -5 -4 -3 -2 -1 0 -1 -2 -1 -2 -3 -2 -1 -2 -3 -2 -3 -4 -5 -4 -3 -2 -3 -2 -3 -2 -1 -2 -3 -2 -1 -2 -3 -4 -3 -2 -1 0 1 2 3 2 1 2 3 2 3 2 3 4 3 4 5 4 3 4 3 2 1 0 -1 -2 -3 -4 -5 -4 -3 -4 -5 -6 -7 -6 -5 -6 -7 -8 -9 -10 -11 -10 -9 -10 -11 -12 -11 -12 -11 -10 -9 -10 -9 -8 -9 -8 -7 -8 -9 -10 -9 -8 -7 -8 -9 -8 -9 -8 -7 -6 -7 -6 -7 -6 -5 -6 -7 -8 -9 -10 -9 -10 -11 -12 -11 -10 -9 -10 -11 -12 -13 -12 -11 -10 -9 -10 -11 -12 -13 -12 -11 -10 -11 -10 -9 -8 -9 -8 -9 -10 -11 -12 -11 -10 -9 -10 -11 -12 -13 -14 -13 -12 -11 -12 -13 -14\caption{300 steps Symmetric Random Walk}
+\end{table}
+
+
+
+
+\begin{figure}[!h]
+\begin{center}
+
+ <<label=fig.SRW, echo=FALSE, include=FALSE, fig=TRUE>>=
+plot(M_k,
+    type = 'l')
+
+\end{center}
+\caption{Symmetric Random Walk}
+\end{figure}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.10)  10 MAY 2017 15:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.10)  11 MAY 2017 15:28
 entering extended mode
 **./SymmetricRandomWalk.tex
 (SymmetricRandomWalk.tex
@@ -312,31 +312,65 @@ G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 456.
 )
 (SymmetricRandomWalk-concordance.tex)
-LaTeX Font Info:    Try loading font information for T1+aett on input line 34.
+! Missing $ inserted.
+<inserted text> 
+                $
+l.51 plot(M_
+            k,
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
 
-("C:\UserPrograms\MiKTeX 2.9\tex\latex\ae\t1aett.fd"
-File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
-) [1
+! Missing $ inserted.
+<inserted text> 
+                $
+l.53 
+     
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
 
-{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}] (SymmetricRandomWalk.aux)
- ) 
+! Missing } inserted.
+<inserted text> 
+                }
+l.53 
+     
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Extra }, or forgotten \endgroup.
+\par ...m \@noitemerr {\@@par }\fi \else {\@@par }
+                                                  \fi 
+l.53 
+     
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+[1
+
+{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
+(SymmetricRandomWalk.aux) ) 
 Here is how much of TeX's memory you used:
- 3278 strings out of 493324
- 44801 string characters out of 3139432
- 101181 words of memory out of 3000000
- 6763 multiletter control sequences out of 15000+200000
- 12496 words of font info for 30 fonts, out of 3000000 for 9000
+ 3255 strings out of 493324
+ 44436 string characters out of 3139432
+ 107181 words of memory out of 3000000
+ 6746 multiletter control sequences out of 15000+200000
+ 11649 words of font info for 27 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 39i,8n,25p,261b,176s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/UserPrograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Use
-rPrograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/UserPrograms
-/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/UserPrograms/MiKTeX 2
-.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/UserPrograms/MiKTeX 2.9/fonts/t
-ype1/public/amsfonts/cm/cmr10.pfb><C:/UserPrograms/MiKTeX 2.9/fonts/type1/publi
-c/amsfonts/cm/cmr7.pfb><C:/UserPrograms/MiKTeX 2.9/fonts/type1/public/amsfonts/
-cm/cmsy10.pfb><C:/UserPrograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10
-.pfb>
-Output written on SymmetricRandomWalk.pdf (1 page, 79940 bytes).
+ 39i,8n,25p,905b,160s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/UserPrograms/MiKTeX 2.9/fonts/type1/public/amsfo
+nts/cm/cmbx12.pfb><C:/UserPrograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cm
+ex10.pfb><C:/UserPrograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb>
+<C:/UserPrograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/UserPr
+ograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/UserPrograms/MiK
+TeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/UserPrograms/MiKTeX 2.9/fon
+ts/type1/public/amsfonts/cm/cmsy10.pfb><C:/UserPrograms/MiKTeX 2.9/fonts/type1/
+public/amsfonts/cm/cmsy7.pfb>
+Output written on SymmetricRandomWalk.pdf (1 page, 83891 bytes).
 PDF statistics:
  39 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

@@ -29,6 +29,8 @@ In the following lines of code, $X_i$ is randomly difined. The variable $k$ ensu
 It refers to the $k$ of equation~\ref{eq:SRW}.
 $p$ and $q$ are the probability measure, respectively $p$ chance to get value 1 and $q$ chance to get -1 from random variable $X_i$.
 
+
+
 <<echo=FALSE>>=
 p <- 0.5
 q <- 1 - p
@@ -43,11 +45,49 @@ X <- sample(x = c(-1, 1),
             )
 @
 
-After creating the random variable &X_i& it suffices to add up all the differente output we get from time 1 up to &k& to get a specific Symetric Random Walk.
+After creating the random variable $X_i$ it suffices to add up all the differente output we get from time 1 up to $k$ to get a specific Symetric Random Walk.
 
-<<>>=
+The following outcome present a randomly generated 300 steps symmetric random walk.
 
+\begin{table}[h]
+<<echo = false, results=tex>>=
+M_k <- c(0, 
+         sapply(seq_along(X), function(x){sum(X[1:x])}))
+cat(M_k) 
 @
+\caption{300 steps Symmetric Random Walk}
+\end{table}
+
+
+<<label=fig.SRW, echo=FALSE, include=FALSE>>=
+plot(M_k,
+    type = 'l')
+@
+
+
+\begin{figure}[!h]
+\begin{center}
+
+ <<label=fig.SRW, echo=FALSE, include=FALSE, fig=TRUE>>=
+plot(M_k,
+    type = 'l')
+@
+
+\end{center}
+\caption{Symmetric Random Walk}
+\end{figure}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

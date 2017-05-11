@@ -63,7 +63,7 @@ M_k <- c(0,
 # Check by plot
 ##
 png(filename = 'SymmetricRandomWalk.png')
- plot(M,
+ plot(M_k,
      type = 'l')
 dev.off()
 
