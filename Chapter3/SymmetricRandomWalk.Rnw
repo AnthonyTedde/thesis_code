@@ -59,19 +59,29 @@ cat(M_k)
 \end{table}
 
 
-<<label=fig.SRW, echo=FALSE, include=FALSE>>=
-plot(M_k,
-    type = 'l')
-@
-
-
 \begin{figure}[!h]
 \begin{center}
 
- <<label=fig.SRW, echo=FALSE, include=FALSE, fig=TRUE>>=
-plot(M_k,
-    type = 'l')
+
+<<echo=FALSE, fig=TRUE>>=
+# plot(M_k,
+#     type = 'l')
+
+# Change the vector Mk to dataframe with 
+#   Column1: Time period [0, T]
+#   Column2: Outcome of the Symmetric Random Walk at that time.
+df_Mk <- as.data.frame(
+  cbind(
+  seq_along(M_k) - 1,
+  M_k
+))
+colnames(df_Mk) <- c('x', 'y')
+
+library(ggplot2)
+ggplot(data = df_Mk, aes(x, y)) + 
+  geom_line()
 @
+
 
 \end{center}
 \caption{Symmetric Random Walk}
