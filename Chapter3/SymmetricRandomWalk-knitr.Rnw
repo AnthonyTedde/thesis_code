@@ -13,6 +13,7 @@ library(extrafont)
 # font_install('fontcm')
 # fonts() -> return all available fonts
 library(ggplot2)
+library(xtable)
 @
 
 
@@ -70,7 +71,7 @@ M_k <- c(0,
 \end{table}
 
 
-\begin{figure}[!ht]
+\begin{figure}[!h]
 \begin{center}
 
 <<echo=FALSE, out.width='100%', message=F, warning=F>>=
@@ -99,21 +100,13 @@ ggplot(data = df_Mk, aes(x, y)) +
 \caption{Symmetric Random Walk}
 \end{figure}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<<results='asis'>>=
+Mk <- fi <- data.frame(matrix(rep(0, (k + 1)^2), nrow = k + 1))
+for(j in 1:(k + 1))
+ for(i in 1:j)
+   Mk[i,j] <- (j-i) + (1-i)
+xtable(Mk[1:10, 1:10])
+@
+ 
+           
 \end{document}

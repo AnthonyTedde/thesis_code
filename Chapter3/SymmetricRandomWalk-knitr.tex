@@ -60,7 +60,9 @@
 
 {\ttfamily\noindent\itshape\color{messagecolor}{\#\# Registering fonts with R}}
 
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning: package 'ggplot2' was built under R version 3.3.3}}\end{kframe}
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: package 'ggplot2' was built under R version 3.3.3}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: package 'xtable' was built under R version 3.3.3}}\end{kframe}
 \end{knitrout}
 
 
@@ -102,7 +104,7 @@ The following outcome present a randomly generated 300 steps symmetric random wa
 \end{table}
 
 
-\begin{figure}[!ht]
+\begin{figure}[!h]
 \begin{center}
 
 \begin{knitrout}
@@ -115,6 +117,36 @@ The following outcome present a randomly generated 300 steps symmetric random wa
 \end{center}
 \caption{Symmetric Random Walk}
 \end{figure}
+
+\begin{kframe}
+\begin{alltt}
+\hlstd{Mk} \hlkwb{<-} \hlstd{fi} \hlkwb{<-} \hlkwd{data.frame}\hlstd{(}\hlkwd{matrix}\hlstd{(}\hlkwd{rep}\hlstd{(}\hlnum{0}\hlstd{, (k} \hlopt{+} \hlnum{1}\hlstd{)}\hlopt{^}\hlnum{2}\hlstd{),} \hlkwc{nrow} \hlstd{= k} \hlopt{+} \hlnum{1}\hlstd{))}
+\hlkwa{for}\hlstd{(j} \hlkwa{in} \hlnum{1}\hlopt{:}\hlstd{(k} \hlopt{+} \hlnum{1}\hlstd{))}
+ \hlkwa{for}\hlstd{(i} \hlkwa{in} \hlnum{1}\hlopt{:}\hlstd{j)}
+   \hlstd{Mk[i,j]} \hlkwb{<-} \hlstd{(j}\hlopt{-}\hlstd{i)} \hlopt{+} \hlstd{(}\hlnum{1}\hlopt{-}\hlstd{i)}
+\hlkwd{xtable}\hlstd{(Mk[}\hlnum{1}\hlopt{:}\hlnum{10}\hlstd{,} \hlnum{1}\hlopt{:}\hlnum{10}\hlstd{])}
+\end{alltt}
+\end{kframe}% latex table generated in R 3.3.2 by xtable 1.8-2 package
+% Fri May 12 15:43:43 2017
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrrrrrrrrrr}
+  \hline
+ & X1 & X2 & X3 & X4 & X5 & X6 & X7 & X8 & X9 & X10 \\ 
+  \hline
+1 & 0.00 & 1.00 & 2.00 & 3.00 & 4.00 & 5.00 & 6.00 & 7.00 & 8.00 & 9.00 \\ 
+  2 & 0.00 & -1.00 & 0.00 & 1.00 & 2.00 & 3.00 & 4.00 & 5.00 & 6.00 & 7.00 \\ 
+  3 & 0.00 & 0.00 & -2.00 & -1.00 & 0.00 & 1.00 & 2.00 & 3.00 & 4.00 & 5.00 \\ 
+  4 & 0.00 & 0.00 & 0.00 & -3.00 & -2.00 & -1.00 & 0.00 & 1.00 & 2.00 & 3.00 \\ 
+  5 & 0.00 & 0.00 & 0.00 & 0.00 & -4.00 & -3.00 & -2.00 & -1.00 & 0.00 & 1.00 \\ 
+  6 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & -5.00 & -4.00 & -3.00 & -2.00 & -1.00 \\ 
+  7 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & -6.00 & -5.00 & -4.00 & -3.00 \\ 
+  8 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & -7.00 & -6.00 & -5.00 \\ 
+  9 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & -8.00 & -7.00 \\ 
+  10 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & -9.00 \\ 
+   \hline
+\end{tabular}
+\end{table}
 
 
 
