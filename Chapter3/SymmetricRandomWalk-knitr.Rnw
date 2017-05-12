@@ -4,7 +4,7 @@
 \begin{document}
 %\SweaveOpts{concordance=TRUE}
 
-<<>>=
+<<echo=FALSE>>=
 # Use extrafonts package (especially for ggplot)
 library(extrafont)
 # font_import()
@@ -12,6 +12,7 @@ library(extrafont)
 # 
 # font_install('fontcm')
 # fonts() -> return all available fonts
+library(ggplot2)
 @
 
 
@@ -69,10 +70,10 @@ M_k <- c(0,
 \end{table}
 
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 
-<<echo=FALSE, fig=TRUE, fig.width=5, fig.height=5, message=F, warning=F>>=
+<<echo=FALSE, out.width='100%', message=F, warning=F>>=
 # 
 # Change the vector Mk to dataframe with 
 #   Column1: Time period [0, T]
@@ -84,16 +85,13 @@ M_k <- c(0,
 ))
 colnames(df_Mk) <- c('x', 'y')
 
-setwd("C:/Users/ate/workspace/thesis/code/Chapter3")
- # pdf("SRW.pdf")
-library(ggplot2)
+# Plot
 ggplot(data = df_Mk, aes(x, y)) + 
   geom_line() +
   xlab("Time") + ylab("SRW") +
   theme_minimal() + 
   theme(text = element_text(family="CM Roman"),
         axis.title = element_text(face = "plain"))
-# dev.off()
 @
 
 
