@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.10)  12 MAY 2017 11:07
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.10)  12 MAY 2017 11:26
 entering extended mode
 **./SymmetricRandomWalk.tex
 (SymmetricRandomWalk.tex
@@ -311,37 +311,36 @@ Package grfext Info: Graphics extension search list:
 G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 456.
 )
-(SymmetricRandomWalk-concordance.tex)
-<SymmetricRandomWalk-003.pdf, id=2, 867.24pt x 867.24pt>
-File: SymmetricRandomWalk-003.pdf Graphic file (type pdf)
+(SymmetricRandomWalk-concordance.tex) <SRW.pdf, id=2, 505.89pt x 505.89pt>
+File: SRW.pdf Graphic file (type pdf)
 
-<use SymmetricRandomWalk-003.pdf>
-Package pdftex.def Info: SymmetricRandomWalk-003.pdf used on input line 48.
-(pdftex.def)             Requested size: 276.00105pt x 276.00067pt.
+<use SRW.pdf>
+Package pdftex.def Info: SRW.pdf used on input line 49.
+(pdftex.def)             Requested size: 345.0pt x 345.00414pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [1
 
-{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}] [2 <./SymmetricRandomWalk
--003.pdf>] (SymmetricRandomWalk.aux) ) 
+{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}] [2 <./SRW.pdf>]
+(SymmetricRandomWalk.aux) ) 
 Here is how much of TeX's memory you used:
- 3261 strings out of 493324
- 44591 string characters out of 3139432
+ 3260 strings out of 493324
+ 44483 string characters out of 3139432
  107181 words of memory out of 3000000
  6750 multiletter control sequences out of 15000+200000
  11649 words of font info for 27 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 39i,8n,25p,868b,267s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/UserPrograms/MiKTeX 2.9/fonts/type1/p
-ublic/amsfonts/cm/cmbx12.pfb><C:/UserPrograms/MiKTeX 2.9/fonts/type1/public/ams
-fonts/cm/cmex10.pfb><C:/UserPrograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/
-cmmi10.pfb><C:/UserPrograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb
-><C:/UserPrograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/UserP
-rograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/UserPrograms/MiK
-TeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on SymmetricRandomWalk.pdf (2 pages, 81832 bytes).
+ 39i,8n,25p,1149b,266s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/UserPrograms/MiKTeX 2.9/fonts/type1/public/amsfo
+nts/cm/cmbx12.pfb><C:/UserPrograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cm
+ex10.pfb><C:/UserPrograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb>
+<C:/UserPrograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/UserPr
+ograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/UserPrograms/MiK
+TeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/UserPrograms/MiKTeX 2.9/fon
+ts/type1/public/amsfonts/cm/cmsy10.pfb>
+Output written on SymmetricRandomWalk.pdf (2 pages, 81864 bytes).
 PDF statistics:
  45 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

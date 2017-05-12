@@ -62,7 +62,7 @@ cat(M_k)
 \begin{figure}[!h]
 \begin{center}
 
-<<echo=FALSE, fig=TRUE, width=12, height=12>>=
+<<echo=FALSE, fig=TRUE, width=12, height=12, include=FALSE, results=hide>>=
 # Use extrafonts package:
 library(extrafont)
 # font_import()
@@ -81,15 +81,19 @@ library(extrafont)
 ))
 colnames(df_Mk) <- c('x', 'y')
 
+setwd("C:/Users/ate/workspace/thesis/code/Chapter3")
+pdf("SRW.pdf")
 library(ggplot2)
 ggplot(data = df_Mk, aes(x, y)) + 
   geom_line() +
-  xlab("Time") + ylab("SRW") + ggtitle("Symetric Random Walk") +
+  xlab("Time") + ylab("SRW") +
   theme_minimal() + 
   theme(text = element_text(family="CM Roman"),
         axis.title = element_text(face = "plain"))
+dev.off()
 @
 
+\includegraphics[width=1.0\textwidth]{SRW.pdf}
 
 \end{center}
 \caption{Symmetric Random Walk}
