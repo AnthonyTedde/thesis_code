@@ -62,15 +62,19 @@ cat(M_k)
 \begin{figure}[!h]
 \begin{center}
 
-
-<<echo=FALSE, fig=TRUE>>=
-# plot(M_k,
-#     type = 'l')
-
+<<echo=FALSE, fig=TRUE, width=12, height=12>>=
+# Use extrafonts package:
+library(extrafont)
+# font_import()
+# loadfonts()
+# 
+# font_install('fontcm')
+# fonts() -> return all available fonts
+# 
 # Change the vector Mk to dataframe with 
 #   Column1: Time period [0, T]
 #   Column2: Outcome of the Symmetric Random Walk at that time.
-df_Mk <- as.data.frame(
+ df_Mk <- as.data.frame(
   cbind(
   seq_along(M_k) - 1,
   M_k
@@ -79,7 +83,11 @@ colnames(df_Mk) <- c('x', 'y')
 
 library(ggplot2)
 ggplot(data = df_Mk, aes(x, y)) + 
-  geom_line()
+  geom_line() +
+  xlab("Time") + ylab("SRW") + ggtitle("Symetric Random Walk") +
+  theme_minimal() + 
+  theme(text = element_text(family="CM Roman"),
+        axis.title = element_text(face = "plain"))
 @
 
 
