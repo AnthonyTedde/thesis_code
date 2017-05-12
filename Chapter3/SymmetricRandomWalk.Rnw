@@ -2,7 +2,7 @@
 \usepackage{amsmath}
 
 \begin{document}
-\SweaveOpts{concordance=TRUE}
+%\SweaveOpts{concordance=TRUE}
 
 \section{Description}
 The symetric random walk will be described in this document (Mt). it covers the theory of "Stochastic Calculus for finance" Tome 2 chapter 3 section 1.
@@ -50,10 +50,10 @@ After creating the random variable $X_i$ it suffices to add up all the different
 The following outcome present a randomly generated 300 steps symmetric random walk.
 
 \begin{table}[h]
-<<echo = false, results=tex>>=
+<<echo=FALSE>>=
 M_k <- c(0, 
          sapply(seq_along(X), function(x){sum(X[1:x])}))
-cat(M_k) 
+# cat(M_k) 
 @
 \caption{300 steps Symmetric Random Walk}
 \end{table}
@@ -62,7 +62,7 @@ cat(M_k)
 \begin{figure}[!h]
 \begin{center}
 
-<<echo=FALSE, fig=TRUE, width=12, height=12, include=FALSE, results=hide>>=
+<<echo=FALSE, fig=TRUE, width=12, height=12, message=F, warning=F>>=
 # Use extrafonts package:
 library(extrafont)
 # font_import()
@@ -82,7 +82,7 @@ library(extrafont)
 colnames(df_Mk) <- c('x', 'y')
 
 setwd("C:/Users/ate/workspace/thesis/code/Chapter3")
-pdf("SRW.pdf")
+ # pdf("SRW.pdf")
 library(ggplot2)
 ggplot(data = df_Mk, aes(x, y)) + 
   geom_line() +
@@ -90,14 +90,14 @@ ggplot(data = df_Mk, aes(x, y)) +
   theme_minimal() + 
   theme(text = element_text(family="CM Roman"),
         axis.title = element_text(face = "plain"))
-dev.off()
+# dev.off()
 @
 
-\includegraphics[width=1.0\textwidth]{SRW.pdf}
 
 \end{center}
 \caption{Symmetric Random Walk}
 \end{figure}
+
 
 
 

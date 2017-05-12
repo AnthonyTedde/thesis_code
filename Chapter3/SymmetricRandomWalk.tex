@@ -1,9 +1,58 @@
-\documentclass{article}
-\usepackage{amsmath}
+\documentclass{article}\usepackage[]{graphicx}\usepackage[]{color}
+%% maxwidth is the original width if it is less than linewidth
+%% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
 
-\usepackage{Sweave}
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+\let\hlipl\hlkwb
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
+\usepackage{amsmath}
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 \begin{document}
-\input{SymmetricRandomWalk-concordance}
+%\SweaveOpts{concordance=TRUE}
 
 \section{Description}
 The symetric random walk will be described in this document (Mt). it covers the theory of "Stochastic Calculus for finance" Tome 2 chapter 3 section 1.
@@ -33,24 +82,31 @@ $p$ and $q$ are the probability measure, respectively $p$ chance to get value 1 
 
 
 
+
 After creating the random variable $X_i$ it suffices to add up all the differente output we get from time 1 up to $k$ to get a specific Symetric Random Walk.
 
 The following outcome present a randomly generated 300 steps symmetric random walk.
 
 \begin{table}[h]
-0 1 2 3 4 3 2 1 2 3 2 1 2 1 0 1 2 3 4 5 4 5 4 3 2 1 0 -1 -2 -3 -2 -3 -4 -3 -2 -3 -4 -5 -4 -3 -4 -5 -6 -7 -6 -7 -8 -9 -8 -9 -8 -7 -6 -5 -4 -3 -4 -5 -6 -7 -6 -5 -6 -5 -4 -5 -4 -3 -4 -5 -6 -7 -6 -5 -6 -7 -6 -5 -4 -3 -4 -3 -4 -5 -6 -7 -6 -5 -6 -7 -6 -5 -4 -3 -4 -3 -4 -5 -4 -5 -4 -5 -6 -7 -8 -9 -8 -7 -8 -9 -10 -11 -12 -13 -14 -15 -16 -15 -14 -15 -16 -17 -16 -15 -14 -15 -16 -15 -16 -17 -18 -19 -18 -17 -16 -15 -16 -17 -16 -15 -16 -17 -18 -17 -18 -19 -20 -21 -22 -23 -24 -23 -22 -23 -22 -23 -24 -23 -22 -21 -22 -23 -24 -23 -24 -23 -24 -23 -24 -25 -26 -27 -28 -29 -30 -29 -30 -29 -28 -29 -28 -27 -28 -27 -28 -27 -26 -27 -28 -27 -26 -27 -28 -29 -28 -29 -30 -31 -30 -29 -30 -31 -32 -31 -30 -31 -30 -29 -30 -31 -32 -33 -34 -33 -32 -31 -32 -31 -32 -31 -30 -29 -28 -27 -28 -27 -26 -25 -24 -23 -24 -25 -24 -23 -24 -25 -26 -25 -26 -27 -28 -27 -26 -27 -28 -29 -30 -29 -30 -29 -30 -31 -30 -31 -30 -29 -28 -29 -28 -27 -28 -29 -28 -27 -26 -25 -24 -23 -22 -23 -24 -23 -22 -23 -22 -21 -22 -23 -24 -25 -26 -25 -26 -25 -26 -27 -28 -27 -28 -27 -26 -27 -28 -29 -30 -31 -30 -31 -30 -31 -32\caption{300 steps Symmetric Random Walk}
+
+\caption{300 steps Symmetric Random Walk}
 \end{table}
 
 
 \begin{figure}[!h]
 \begin{center}
 
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-3-1} 
 
-\includegraphics[width=1.0\textwidth]{SRW.pdf}
+\end{knitrout}
+
 
 \end{center}
 \caption{Symmetric Random Walk}
 \end{figure}
+
 
 
 
