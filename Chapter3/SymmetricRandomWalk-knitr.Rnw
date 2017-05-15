@@ -118,6 +118,30 @@ align(Mk.tab) <- rep("r", 11)
 Mk.tab
 @
 
+<<>>=
+# compute the probability measure to apply on the Random Variable Mk
+fi <- outer(dim_x,
+            dim_y,
+            FUN = function(i, j){choose((j-1), (j-i)) * p^(j-1)})
+@
+
+<<>>=
+ range <- 1:ncol(Mk)
+lastToss <- ncol(Mk)
+ # Using ggplot
+# data.frame which map distribution and random variable:
+distributionSymRanWal <- data.frame(
+  Value = Mk[range, lastToss],
+  Frequency = fi[range, lastToss]
+)
+
+# For the sake of visibility the limit of X axis has been set to [-100, 100]
+ggplot(data = distributionSymRanWal, aes(Value, Frequency)) +
+  geom_line() +
+  scale_x_continuous(limits = c(-100, 100))
+@
+
+
 
  
            

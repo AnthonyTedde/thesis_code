@@ -82,7 +82,10 @@ for(j in 1:(size + 1))
 
 # Functional Way:
 # No information from profiler: too fast
-o <- outer(1:ncol(Mt), 1:nrow(Mt) , FUN=function(r,c){(r-c) + (1-c)} )
+dim_x <- dim_y <- 1:(size + 1)
+o <- outer(dim_x, 
+           dim_y, 
+           FUN=function(r,c){(r-c) + (1-c)} )
 to <- t(o)
 subset <- upper.tri(to, diag = T)
 Mk <- to * subset
@@ -90,22 +93,44 @@ Mk <- to * subset
 ##
 # Construction of the distribution of the theoretical random variable
 ##
+ # Usual wrong way:
+# Profiling give 1200 Ms
 for(j in 1:(size+1))
   for(i in 1:j)
     fi[i, j] <- choose((j-1), 
                        (j-i)) * p^(j-1)
+
+# Same results following funcional way
+o <- outer(dim_x,
+           dim_y,
+           FUN = function(i, j){choose((j-1), (j-i)) * p^(j-1)})
 
 ##
 # Graph of the Theoretical distribution
 ##
 
 png(filename = 'SymmRandWalkTheoretiaclDistrib.png')
-fromto <- 1:size + 1
-to <- size + 1
-plot(Mt[fromto, to],
-     fi[fromto, to], 
+range <- 1:ncol(Mk)
+lastToss <- ncol(Mk)
+# Using plot
+plot(Mt[range, lastToss],
+     fi[range, lastToss], 
      type = 'l', 
      xlim = c(-75, 75))
+# Using ggplot
+# data.frame which map distribution and random variable:
+distributionSymRanWal <- data.frame(
+  Value = Mt[range, lastToss],
+  Frequency = fi[range, lastToss]
+)
+
+# For the sake of visibility the limit of X axis has been set to [-100, 100]
+ggplot(data = distributionSymRanWal, aes(Value, Frequency)) +
+  geom_line() +
+  scale_x_continuous(limits = c(-100, 100))
+
+
+
 dev.off()
 
 ################################################################################

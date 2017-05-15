@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.10)  15 MAY 2017 11:16
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.10)  15 MAY 2017 16:43
 entering extended mode
 **./SymmetricRandomWalk-knitr.tex
 (SymmetricRandomWalk-knitr.tex
@@ -259,12 +259,44 @@ Underfull \vbox (badness 10000) detected at line 147
 Overfull \vbox (0.11525pt too high) detected at line 147
  []
 
-[2 <./figure/unnamed-chunk-4-1.pdf>] [3] (SymmetricRandomWalk-knitr.aux) ) 
+[2 <./figure/unnamed-chunk-4-1.pdf>]
+Package color Info: Redefining color shadecolor on input line 171.
+
+Overfull \hbox (13.733pt too wide) in paragraph at lines 173--173
+[][]\OT1/cmtt/m/it/10 # compute the probability measure to apply on the Random 
+Variable Mk[][] 
+ []
+
+Package color Info: Redefining color shadecolor on input line 182.
+
+Overfull \hbox (55.73264pt too wide) in paragraph at lines 193--193
+[][]\OT1/cmtt/m/it/10 # For the sake of visibility the limit of X axis has been
+ set to [-100, 100][][] 
+ []
+
+
+Overfull \hbox (10.52689pt too wide) in paragraph at lines 200--200
+[]\OT1/cmtt/m/n/10 ## Warning: Removed 200 rows containing missing values (geom
+[]path).[] 
+ []
+
+<figure/unnamed-chunk-7-1.pdf, id=24, 505.89pt x 505.89pt>
+File: figure/unnamed-chunk-7-1.pdf Graphic file (type pdf)
+
+<use figure/unnamed-chunk-7-1.pdf>
+Package pdftex.def Info: figure/unnamed-chunk-7-1.pdf used on input line 201.
+(pdftex.def)             Requested size: 345.0pt x 345.00414pt.
+
+Overfull \hbox (15.0pt too wide) in paragraph at lines 201--202
+[][] 
+ []
+
+[3] [4 <./figure/unnamed-chunk-7-1.pdf>] (SymmetricRandomWalk-knitr.aux) ) 
 Here is how much of TeX's memory you used:
- 2249 strings out of 493324
- 30422 string characters out of 3139432
- 96243 words of memory out of 3000000
- 5763 multiletter control sequences out of 15000+200000
+ 2255 strings out of 493324
+ 30592 string characters out of 3139432
+ 100243 words of memory out of 3000000
+ 5768 multiletter control sequences out of 15000+200000
  5035 words of font info for 20 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  39i,8n,25p,311b,294s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -277,9 +309,9 @@ public/amsfonts/cm/cmmi7.pfb><C:/UserPrograms/MiKTeX 2.9/fonts/type1/public/ams
 fonts/cm/cmr10.pfb><C:/UserPrograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
 mr7.pfb><C:/UserPrograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><
 C:/UserPrograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on SymmetricRandomWalk-knitr.pdf (3 pages, 111177 bytes).
+Output written on SymmetricRandomWalk-knitr.pdf (4 pages, 119516 bytes).
 PDF statistics:
- 55 PDF objects out of 1000 (max. 8388607)
+ 64 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 11 words of extra memory for PDF output out of 10000 (max. 10000000)
 

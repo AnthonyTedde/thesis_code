@@ -139,32 +139,70 @@ The following outcome present a randomly generated 300 steps symmetric random wa
 \hlkwd{colnames}\hlstd{(Mk)} \hlkwb{<-} \hlkwd{paste0}\hlstd{(}\hlstr{"F("}\hlstd{,} \hlnum{1}\hlopt{:}\hlkwd{ncol}\hlstd{(Mk)} \hlopt{-} \hlnum{1}\hlstd{,} \hlstr{")"}\hlstd{)}
 \hlcom{# Transform Mk to better suit the table:}
 \hlstd{Mk_print} \hlkwb{<-} \hlkwd{apply}\hlstd{(Mk,} \hlnum{2}\hlstd{, as.character)}
-\hlstd{Mk_print[Mk_print} \hlopt{==} \hlstr{'0'}\hlstd{]} \hlkwb{<-} \hlstr{''}
+\hlcom{# Create the Tex Table > tabular}
 \hlstd{Mk.tab} \hlkwb{<-} \hlkwd{xtable}\hlstd{(Mk_print[}\hlnum{1}\hlopt{:}\hlnum{10}\hlstd{,} \hlnum{1}\hlopt{:}\hlnum{10}\hlstd{],} \hlkwc{digits} \hlstd{=} \hlnum{0}\hlstd{,} \hlkwc{format} \hlstd{=} \hlstr{"latex"}\hlstd{)}
 \hlkwd{align}\hlstd{(Mk.tab)} \hlkwb{<-} \hlkwd{rep}\hlstd{(}\hlstr{"r"}\hlstd{,} \hlnum{11}\hlstd{)}
 \hlstd{Mk.tab}
 \end{alltt}
 \end{kframe}% latex table generated in R 3.3.2 by xtable 1.8-2 package
-% Mon May 15 11:16:47 2017
+% Mon May 15 16:43:38 2017
 \begin{table}[ht]
 \centering
 \begin{tabular}{rrrrrrrrrrr}
   \hline
  & F(0) & F(1) & F(2) & F(3) & F(4) & F(5) & F(6) & F(7) & F(8) & F(9) \\ 
   \hline
-1 &  & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 \\ 
-  2 &  & -1 &  & 1 & 2 & 3 & 4 & 5 & 6 & 7 \\ 
-  3 &  &  & -2 & -1 &  & 1 & 2 & 3 & 4 & 5 \\ 
-  4 &  &  &  & -3 & -2 & -1 &  & 1 & 2 & 3 \\ 
-  5 &  &  &  &  & -4 & -3 & -2 & -1 &  & 1 \\ 
-  6 &  &  &  &  &  & -5 & -4 & -3 & -2 & -1 \\ 
-  7 &  &  &  &  &  &  & -6 & -5 & -4 & -3 \\ 
-  8 &  &  &  &  &  &  &  & -7 & -6 & -5 \\ 
-  9 &  &  &  &  &  &  &  &  & -8 & -7 \\ 
-  10 &  &  &  &  &  &  &  &  &  & -9 \\ 
+1 & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 \\ 
+  2 & 0 & -1 & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 \\ 
+  3 & 0 & 0 & -2 & -1 & 0 & 1 & 2 & 3 & 4 & 5 \\ 
+  4 & 0 & 0 & 0 & -3 & -2 & -1 & 0 & 1 & 2 & 3 \\ 
+  5 & 0 & 0 & 0 & 0 & -4 & -3 & -2 & -1 & 0 & 1 \\ 
+  6 & 0 & 0 & 0 & 0 & 0 & -5 & -4 & -3 & -2 & -1 \\ 
+  7 & 0 & 0 & 0 & 0 & 0 & 0 & -6 & -5 & -4 & -3 \\ 
+  8 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & -7 & -6 & -5 \\ 
+  9 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & -8 & -7 \\ 
+  10 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & -9 \\ 
    \hline
 \end{tabular}
 \end{table}
+
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{# compute the probability measure to apply on the Random Variable Mk}
+\hlstd{fi} \hlkwb{<-} \hlkwd{outer}\hlstd{(dim_x,}
+            \hlstd{dim_y,}
+            \hlkwc{FUN} \hlstd{=} \hlkwa{function}\hlstd{(}\hlkwc{i}\hlstd{,} \hlkwc{j}\hlstd{)\{}\hlkwd{choose}\hlstd{((j}\hlopt{-}\hlnum{1}\hlstd{), (j}\hlopt{-}\hlstd{i))} \hlopt{*} \hlstd{p}\hlopt{^}\hlstd{(j}\hlopt{-}\hlnum{1}\hlstd{)\})}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+ \hlstd{range} \hlkwb{<-} \hlnum{1}\hlopt{:}\hlkwd{ncol}\hlstd{(Mk)}
+\hlstd{lastToss} \hlkwb{<-} \hlkwd{ncol}\hlstd{(Mk)}
+ \hlcom{# Using ggplot}
+\hlcom{# data.frame which map distribution and random variable:}
+\hlstd{distributionSymRanWal} \hlkwb{<-} \hlkwd{data.frame}\hlstd{(}
+  \hlkwc{Value} \hlstd{= Mk[range, lastToss],}
+  \hlkwc{Frequency} \hlstd{= fi[range, lastToss]}
+\hlstd{)}
+
+\hlcom{# For the sake of visibility the limit of X axis has been set to [-100, 100]}
+\hlkwd{ggplot}\hlstd{(}\hlkwc{data} \hlstd{= distributionSymRanWal,} \hlkwd{aes}\hlstd{(Value, Frequency))} \hlopt{+}
+  \hlkwd{geom_line}\hlstd{()} \hlopt{+}
+  \hlkwd{scale_x_continuous}\hlstd{(}\hlkwc{limits} \hlstd{=} \hlkwd{c}\hlstd{(}\hlopt{-}\hlnum{100}\hlstd{,} \hlnum{100}\hlstd{))}
+\end{alltt}
+
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: Removed 200 rows containing missing values (geom\_path).}}\end{kframe}
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-7-1} 
+
+\end{knitrout}
+
+
 
  
            
