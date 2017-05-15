@@ -62,7 +62,17 @@
 
 {\ttfamily\noindent\color{warningcolor}{\#\# Warning: package 'ggplot2' was built under R version 3.3.3}}
 
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning: package 'xtable' was built under R version 3.3.3}}\end{kframe}
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: package 'xtable' was built under R version 3.3.3}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: package 'dplyr' was built under R version 3.3.3}}
+
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# \\\#\# Attaching package: 'dplyr'}}
+
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# The following objects are masked from 'package:plyr':\\\#\# \\\#\#\ \ \ \  arrange, count, desc, failwith, id, mutate, rename, summarise,\\\#\#\ \ \ \  summarize}}
+
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# The following objects are masked from 'package:stats':\\\#\# \\\#\#\ \ \ \  filter, lag}}
+
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# The following objects are masked from 'package:base':\\\#\# \\\#\#\ \ \ \  intersect, setdiff, setequal, union}}\end{kframe}
 \end{knitrout}
 
 
@@ -120,49 +130,42 @@ The following outcome present a randomly generated 300 steps symmetric random wa
 
 \begin{kframe}
 \begin{alltt}
-\hlstd{Mk} \hlkwb{<-} \hlstd{fi} \hlkwb{<-} \hlkwd{data.frame}\hlstd{(}\hlkwd{matrix}\hlstd{(}\hlkwd{rep}\hlstd{(}\hlnum{0}\hlstd{, (k} \hlopt{+} \hlnum{1}\hlstd{)}\hlopt{^}\hlnum{2}\hlstd{),} \hlkwc{nrow} \hlstd{= k} \hlopt{+} \hlnum{1}\hlstd{))}
-\hlkwa{for}\hlstd{(j} \hlkwa{in} \hlnum{1}\hlopt{:}\hlstd{(k} \hlopt{+} \hlnum{1}\hlstd{))}
- \hlkwa{for}\hlstd{(i} \hlkwa{in} \hlnum{1}\hlopt{:}\hlstd{j)}
-   \hlstd{Mk[i,j]} \hlkwb{<-} \hlstd{(j}\hlopt{-}\hlstd{i)} \hlopt{+} \hlstd{(}\hlnum{1}\hlopt{-}\hlstd{i)}
-\hlkwd{xtable}\hlstd{(Mk[}\hlnum{1}\hlopt{:}\hlnum{10}\hlstd{,} \hlnum{1}\hlopt{:}\hlnum{10}\hlstd{])}
+\hlcom{# Because squared matrix dim(y) = dim(x):}
+\hlstd{dim_x} \hlkwb{<-} \hlstd{dim_y} \hlkwb{<-} \hlnum{1}\hlopt{:}\hlstd{(k} \hlopt{+} \hlnum{1}\hlstd{)} \hlcom{# from 1 to k+1 because we start to time zero nonrandom which equal to zero}
+\hlstd{o} \hlkwb{<-} \hlkwd{outer}\hlstd{(dim_x, dim_y,} \hlkwc{FUN}\hlstd{=}\hlkwa{function}\hlstd{(}\hlkwc{r}\hlstd{,}\hlkwc{c}\hlstd{)\{(r}\hlopt{-}\hlstd{c)} \hlopt{+} \hlstd{(}\hlnum{1}\hlopt{-}\hlstd{c)\} )}
+\hlstd{to} \hlkwb{<-} \hlkwd{t}\hlstd{(o)}
+\hlstd{subset} \hlkwb{<-} \hlkwd{upper.tri}\hlstd{(to,} \hlkwc{diag} \hlstd{= T)}
+\hlstd{Mk} \hlkwb{<-} \hlstd{to} \hlopt{*} \hlstd{subset}
+\hlkwd{colnames}\hlstd{(Mk)} \hlkwb{<-} \hlkwd{paste0}\hlstd{(}\hlstr{"F("}\hlstd{,} \hlnum{1}\hlopt{:}\hlkwd{ncol}\hlstd{(Mk)} \hlopt{-} \hlnum{1}\hlstd{,} \hlstr{")"}\hlstd{)}
+\hlcom{# Transform Mk to better suit the table:}
+\hlstd{Mk_print} \hlkwb{<-} \hlkwd{apply}\hlstd{(Mk,} \hlnum{2}\hlstd{, as.character)}
+\hlstd{Mk_print[Mk_print} \hlopt{==} \hlstr{'0'}\hlstd{]} \hlkwb{<-} \hlstr{''}
+\hlstd{Mk.tab} \hlkwb{<-} \hlkwd{xtable}\hlstd{(Mk_print[}\hlnum{1}\hlopt{:}\hlnum{10}\hlstd{,} \hlnum{1}\hlopt{:}\hlnum{10}\hlstd{],} \hlkwc{digits} \hlstd{=} \hlnum{0}\hlstd{,} \hlkwc{format} \hlstd{=} \hlstr{"latex"}\hlstd{)}
+\hlkwd{align}\hlstd{(Mk.tab)} \hlkwb{<-} \hlkwd{rep}\hlstd{(}\hlstr{"r"}\hlstd{,} \hlnum{11}\hlstd{)}
+\hlstd{Mk.tab}
 \end{alltt}
 \end{kframe}% latex table generated in R 3.3.2 by xtable 1.8-2 package
-% Fri May 12 15:43:43 2017
+% Mon May 15 11:16:47 2017
 \begin{table}[ht]
 \centering
 \begin{tabular}{rrrrrrrrrrr}
   \hline
- & X1 & X2 & X3 & X4 & X5 & X6 & X7 & X8 & X9 & X10 \\ 
+ & F(0) & F(1) & F(2) & F(3) & F(4) & F(5) & F(6) & F(7) & F(8) & F(9) \\ 
   \hline
-1 & 0.00 & 1.00 & 2.00 & 3.00 & 4.00 & 5.00 & 6.00 & 7.00 & 8.00 & 9.00 \\ 
-  2 & 0.00 & -1.00 & 0.00 & 1.00 & 2.00 & 3.00 & 4.00 & 5.00 & 6.00 & 7.00 \\ 
-  3 & 0.00 & 0.00 & -2.00 & -1.00 & 0.00 & 1.00 & 2.00 & 3.00 & 4.00 & 5.00 \\ 
-  4 & 0.00 & 0.00 & 0.00 & -3.00 & -2.00 & -1.00 & 0.00 & 1.00 & 2.00 & 3.00 \\ 
-  5 & 0.00 & 0.00 & 0.00 & 0.00 & -4.00 & -3.00 & -2.00 & -1.00 & 0.00 & 1.00 \\ 
-  6 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & -5.00 & -4.00 & -3.00 & -2.00 & -1.00 \\ 
-  7 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & -6.00 & -5.00 & -4.00 & -3.00 \\ 
-  8 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & -7.00 & -6.00 & -5.00 \\ 
-  9 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & -8.00 & -7.00 \\ 
-  10 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & -9.00 \\ 
+1 &  & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 \\ 
+  2 &  & -1 &  & 1 & 2 & 3 & 4 & 5 & 6 & 7 \\ 
+  3 &  &  & -2 & -1 &  & 1 & 2 & 3 & 4 & 5 \\ 
+  4 &  &  &  & -3 & -2 & -1 &  & 1 & 2 & 3 \\ 
+  5 &  &  &  &  & -4 & -3 & -2 & -1 &  & 1 \\ 
+  6 &  &  &  &  &  & -5 & -4 & -3 & -2 & -1 \\ 
+  7 &  &  &  &  &  &  & -6 & -5 & -4 & -3 \\ 
+  8 &  &  &  &  &  &  &  & -7 & -6 & -5 \\ 
+  9 &  &  &  &  &  &  &  &  & -8 & -7 \\ 
+  10 &  &  &  &  &  &  &  &  &  & -9 \\ 
    \hline
 \end{tabular}
 \end{table}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ 
+           
 \end{document}

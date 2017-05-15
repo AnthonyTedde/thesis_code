@@ -35,7 +35,7 @@ q <- 1 - p
 size <- 300
 spread <- 3000
 M <- 0
- ### 
+### 
 # Mt and fi are dataframe with size = (size + 1) * (size + 1)
 # All value inside Mt and fi are zero.
 # check ate Initialisation section for size value.
@@ -50,7 +50,7 @@ X <- sample(x = c(-1, 1),
             size = size,
             replace = T,
             prob = c(p, q)
-            )
+)
 # Following lines must be changed into apply type function:
 for(i in 1:size) 
   M[i + 1] <- sum(X[1:i]) # i + 1 because M[0] from theory is indeed represented by M[1] in this code.
@@ -63,7 +63,7 @@ M_k <- c(0,
 # Check by plot
 ##
 png(filename = 'SymmetricRandomWalk.png')
- plot(M_k,
+plot(M_k,
      type = 'l')
 dev.off()
 
@@ -74,9 +74,19 @@ dev.off()
 # Construction of the theoretical Random Variable M based on the filtration F(t)
 # See document "randomWalkDistributionAnalysis.jgp"
 ##
+# Usual wrong way:
+# Profiling give 1200 Ms
 for(j in 1:(size + 1))
   for(i in 1:j)
     Mt[i,j] <- (j-i) + (1-i)
+
+# Functional Way:
+# No information from profiler: too fast
+o <- outer(1:ncol(Mt), 1:nrow(Mt) , FUN=function(r,c){(r-c) + (1-c)} )
+to <- t(o)
+subset <- upper.tri(to, diag = T)
+Mk <- to * subset
+
 ##
 # Construction of the distribution of the theoretical random variable
 ##
