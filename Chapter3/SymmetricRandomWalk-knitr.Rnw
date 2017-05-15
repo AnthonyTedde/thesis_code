@@ -117,6 +117,8 @@ Mk.tab <- xtable(Mk_print[1:10, 1:10], digits = 0, format = "latex")
 align(Mk.tab) <- rep("r", 11)
 Mk.tab
 @
+
+
  
            
 \end{document}
