@@ -1,5 +1,5 @@
 \documentclass{article}
-\usepackage{amsmath}
+\usepackage{amsmath, amssymb}
 
 \begin{document}
 %\SweaveOpts{concordance=TRUE}
@@ -146,6 +146,17 @@ ggplot(data = distributionSymRanWal, aes(Value, Frequency)) +
 @
 
 
+\section{Martingale property}
+
+\begin{equation}
+\mathop{\mathbb{E}}[X] = \sum_{i=1}^N p_i \times x_i
+\end{equation}
+
+To show the martingale property we have to show that the expectation of the symmetric random walk $\mathop{\mathbb{E}}[X|F(0)] = M_0 = 0$
+
+<<>>=
+ EM200 = sum(Mk[1:200, 200] * fi[1:200, 200]) # equal zero.
+@
 
 
 

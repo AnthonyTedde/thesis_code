@@ -49,7 +49,7 @@
 \newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
 
 \usepackage{alltt}
-\usepackage{amsmath}
+\usepackage{amsmath, amssymb}
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 \begin{document}
 %\SweaveOpts{concordance=TRUE}
@@ -145,7 +145,7 @@ The following outcome present a randomly generated 300 steps symmetric random wa
 \hlstd{Mk.tab}
 \end{alltt}
 \end{kframe}% latex table generated in R 3.4.0 by xtable 1.8-2 package
-% Wed May 17 09:55:38 2017
+% Wed May 17 11:00:34 2017
 \begin{table}[ht]
 \centering
 \begin{tabular}{rrrrrrrrrrr}
@@ -193,7 +193,10 @@ The following outcome present a randomly generated 300 steps symmetric random wa
 \hlcom{# For the sake of visibility the limit of X axis has been set to [-100, 100]}
 \hlkwd{ggplot}\hlstd{(}\hlkwc{data} \hlstd{= distributionSymRanWal,} \hlkwd{aes}\hlstd{(Value, Frequency))} \hlopt{+}
   \hlkwd{geom_line}\hlstd{()} \hlopt{+}
-  \hlkwd{scale_x_continuous}\hlstd{(}\hlkwc{limits} \hlstd{=} \hlkwd{c}\hlstd{(}\hlopt{-}\hlnum{100}\hlstd{,} \hlnum{100}\hlstd{))}
+  \hlkwd{scale_x_continuous}\hlstd{(}\hlkwc{limits} \hlstd{=} \hlkwd{c}\hlstd{(}\hlopt{-}\hlnum{100}\hlstd{,} \hlnum{100}\hlstd{))} \hlopt{+}
+   \hlkwd{theme_minimal}\hlstd{()} \hlopt{+}
+  \hlkwd{theme}\hlstd{(}\hlkwc{text} \hlstd{=} \hlkwd{element_text}\hlstd{(}\hlkwc{family}\hlstd{=}\hlstr{"CM Roman"}\hlstd{),}
+        \hlkwc{axis.title} \hlstd{=} \hlkwd{element_text}\hlstd{(}\hlkwc{face} \hlstd{=} \hlstr{"plain"}\hlstd{))}
 \end{alltt}
 
 
@@ -201,6 +204,24 @@ The following outcome present a randomly generated 300 steps symmetric random wa
 \includegraphics[width=\maxwidth]{figure/unnamed-chunk-7-1} 
 
 \end{knitrout}
+
+
+\section{Martingale property}
+
+\begin{equation}
+\mathop{\mathbb{E}}[X] = \sum_{i=1}^N p_i \times x_i
+\end{equation}
+
+To show the martingale property we have to show that the expectation of the symmetric random walk $\mathop{\mathbb{E}}[X|F(0)] = M_0 = 0$
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+ \hlstd{EM200} \hlkwb{=} \hlkwd{sum}\hlstd{(Mk[}\hlnum{1}\hlopt{:}\hlnum{200}\hlstd{,} \hlnum{200}\hlstd{]} \hlopt{*} \hlstd{fi[}\hlnum{1}\hlopt{:}\hlnum{200}\hlstd{,} \hlnum{200}\hlstd{])} \hlcom{# equal zero.}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
 
 
 
