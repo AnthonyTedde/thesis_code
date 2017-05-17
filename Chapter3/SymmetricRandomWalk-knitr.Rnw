@@ -7,8 +7,9 @@
 <<echo=FALSE>>=
 # Use extrafonts package (especially for ggplot)
 library(extrafont)
+font_install('fontcm')
 # font_import()
-# loadfonts()
+#loadfonts()
 # 
 # font_install('fontcm')
 # fonts() -> return all available fonts
@@ -138,8 +139,14 @@ distributionSymRanWal <- data.frame(
 # For the sake of visibility the limit of X axis has been set to [-100, 100]
 ggplot(data = distributionSymRanWal, aes(Value, Frequency)) +
   geom_line() +
-  scale_x_continuous(limits = c(-100, 100))
+  scale_x_continuous(limits = c(-100, 100)) +
+   theme_minimal() + 
+  theme(text = element_text(family="CM Roman"),
+        axis.title = element_text(face = "plain"))
 @
+
+
+
 
 
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.10)  15 MAY 2017 16:43
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.10)  17 MAY 2017 09:55
 entering extended mode
 **./SymmetricRandomWalk-knitr.tex
 (SymmetricRandomWalk-knitr.tex
@@ -239,7 +239,7 @@ LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
 (Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 135.
 LaTeX Font Info:    Try loading font information for OMS+cmtt on input line 135
 .
-(C:/USERPR~1/R-33~1.2/share/texmf/tex/latex\omscmtt.fd
+(C:/PROGRA~1/R/R-34~1.0/share/texmf/tex/latex\omscmtt.fd
 File: omscmtt.fd 
 )
 LaTeX Font Info:    Font shape `OMS/cmtt/m/n' in size <10> not available
@@ -294,7 +294,7 @@ Overfull \hbox (15.0pt too wide) in paragraph at lines 201--202
 [3] [4 <./figure/unnamed-chunk-7-1.pdf>] (SymmetricRandomWalk-knitr.aux) ) 
 Here is how much of TeX's memory you used:
  2255 strings out of 493324
- 30592 string characters out of 3139432
+ 30598 string characters out of 3139432
  100243 words of memory out of 3000000
  5768 multiletter control sequences out of 15000+200000
  5035 words of font info for 20 fonts, out of 3000000 for 9000
@@ -309,7 +309,7 @@ public/amsfonts/cm/cmmi7.pfb><C:/UserPrograms/MiKTeX 2.9/fonts/type1/public/ams
 fonts/cm/cmr10.pfb><C:/UserPrograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
 mr7.pfb><C:/UserPrograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><
 C:/UserPrograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on SymmetricRandomWalk-knitr.pdf (4 pages, 119516 bytes).
+Output written on SymmetricRandomWalk-knitr.pdf (4 pages, 119592 bytes).
 PDF statistics:
  64 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

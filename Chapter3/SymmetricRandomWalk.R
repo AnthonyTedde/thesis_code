@@ -1,33 +1,3 @@
-# options
-options("scipen" = 999)
-options(digits = 7)
-# Load libraries
-library(ggplot2)
-# clear workspace
-rm(list = ls())
-gc()
-################################################################################
-# Variables names
-################################################################################
-# p: Probability of Head
-# q: Probability of Tail (1 - p)
-# size: Number of periods for the Random Walk (start at 0)
-# spread: Number of generated Random Walks
-# X: Random variable which take value in {-1, 1}
-#   -> 1  for each head with probability p
-#   -> -1 for each tail with probability q
-# M: symmetric random Walk -> construction based on X
-# Mt: Random variable equiped with a filtration F(t)
-# fi: Distribution of Mt
-# l and k: both are time in the interval: [1, size + 1]
-# 
-
-################################################################################
-# Create a 300 steps random walk
-################################################################################
-##
-# Initialisation
-##
 
 # Probability measure:
 p <- 1/2
@@ -125,6 +95,7 @@ distributionSymRanWal <- data.frame(
 )
 
 # For the sake of visibility the limit of X axis has been set to [-100, 100]
+library(ggplot2)
 ggplot(data = distributionSymRanWal, aes(Value, Frequency)) +
   geom_line() +
   scale_x_continuous(limits = c(-100, 100))
