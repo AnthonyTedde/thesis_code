@@ -106,16 +106,15 @@ ggplot(data = df_Mk, aes(x, y)) +
 <<results='asis'>>=
 # Because squared matrix dim(y) = dim(x):
 dim_x <- dim_y <- 1:(k + 1) # from 1 to k+1 because we start to time zero nonrandom which equal to zero
-o <- outer(dim_x, dim_y, FUN=function(r,c){(r-c) + (1-c)} )
-to <- t(o)
-subset <- upper.tri(to, diag = T)
-Mk <- to * subset
+# Create the symmetric random walk distribution:
+# ifelse is vectorized and therefore is consistent with the using of outer which accept only vectorized function.
+Mk <- outer(dim_x, 
+           dim_y, 
+           FUN=function(r,c){ifelse(c>=r, (c-r) - (r-1), NA_integer_)}) 
 colnames(Mk) <- paste0("F(", 1:ncol(Mk) - 1, ")")
-# Transform Mk to better suit the table:
-Mk_print <- apply(Mk, 2, as.character)
+
 # Create the Tex Table > tabular
-Mk.tab <- xtable(Mk_print[1:10, 1:10], digits = 0, format = "latex")
-align(Mk.tab) <- rep("r", 11)
+Mk.tab <- xtable(Mk[1:10, 1:10], digits = 0, format = "latex")
 Mk.tab
 @
 
@@ -158,6 +157,50 @@ To show the martingale property we have to show that the expectation of the symm
  EM200 = sum(Mk[1:200, 200] * fi[1:200, 200]) # equal zero.
 @
 
+<<>>=
+ ##
+# Expectation of Mt_l at k
+# denoted by: E[Mt_l|f(k)], with k < l
+##
+##
+# Variables
+##
+from <- 2 # Departure of the Expectation
+k <- 4 # To get the filtration point 
+l <- 19 # Give the period to be expected
+if(k>l) 
+interval <- l-k
+##
+# Partionated Symmetric Random Walk
+##
+# first the value of M at time $k$ has to be set. It means that the value at this time $k$ is not yet random but resolved.
+# Therefore at time $k$ the variable $M_k$ is not random. 
+# We can take any value we want to start with from 1 to $k + 1$.
+# I choose to name this variable $from$:
+from <- 2 # Departure of the Expectation
+# The lenght of the path is already know: $(l - k)$:
+len <- l - k
+i <- from:(from + len)
+j <- k:l
+df <- Mk[i, j]
+# names(df) <- sapply(1:ncol(df), function(x){paste0("X",x)})
+##
+# Con 
+##
+
+# The probability from k to l start from k to l. The probability table has therefore to be taken from begining.
+fi_min <- fi[1:(len+1), 1:(len+1)]
+# Old calculation of fi:
+# 
+# fi <- data.frame(matrix(rep(0, (l-k + 1)^2), nrow = l-k + 1))
+# for(j in 1:(l-k+1))
+#   for(i in 1:j)
+#     fi[i, j] <- choose((j-1), (i-1)) * p^(j-1)#((j-1)*p^(j-1))/(factorial(j-1)*factorial(1+i))
+# Finally compute the expectation E[Mt_l|f(k)]:
+Mk[from, k] == sum(df[, l-k+1] * fi_min[, l-k+1]) #Yeah it is a matringale
+
+
+@
 
 
 

@@ -59,6 +59,12 @@ o <- outer(dim_x,
 to <- t(o)
 subset <- upper.tri(to, diag = T)
 Mk <- to * subset
+# Better functional way:
+dim_x <- dim_y <- 1:(size + 1)
+o <- outer(dim_x, 
+           dim_y, 
+           FUN=function(r,c){ifelse(c>=r, (c-r) - (r-1), NA_integer_)}) 
+
 
 ##
 # Construction of the distribution of the theoretical random variable
@@ -71,7 +77,7 @@ for(j in 1:(size+1))
                        (j-i)) * p^(j-1)
 
 # Same results following funcional way
-o <- outer(dim_x,
+fi <- outer(dim_x,
            dim_y,
            FUN = function(i, j){choose((j-1), (j-i)) * p^(j-1)})
 
@@ -83,7 +89,7 @@ png(filename = 'SymmRandWalkTheoretiaclDistrib.png')
 range <- 1:ncol(Mk)
 lastToss <- ncol(Mk)
 # Using plot
-plot(Mt[range, lastToss],
+plot(Mk[range, lastToss],
      fi[range, lastToss], 
      type = 'l', 
      xlim = c(-75, 75))
@@ -129,25 +135,37 @@ EM200 = sum(Mt[1:200, 200] * fi[1:200, 200]) # equal zero.
 from <- 2 # Departure of the Expectation
 k <- 4 # To get the filtration point 
 l <- 19 # Give the period to be expected
+if(k>l) 
 interval <- l-k
-df <- data.frame(matrix(
-  rep(0, (interval+1)^2),
-  nrow = (interval+1)
-))
 ##
 # Partionated Symmetric Random Walk
 ##
-df[1:(1+interval), 1:(1+interval)] <- Mt[from:(from + interval), k:l]
+# first the value of M at time $k$ has to be set. It means that the value at this time $k$ is not yet random but resolved.
+# Therefore at time $k$ the variable $M_k$ is not random. 
+# We can take any value we want to start with from 1 to $k + 1$.
+# I choose to name this variable $from$:
+from <- 2 # Departure of the Expectation
+# The lenght of the path is already know: $(l - k)$:
+len <- l - k
+i <- from:(from + len)
+j <- k:l
+df <- Mk[i, j]
+# names(df) <- sapply(1:ncol(df), function(x){paste0("X",x)})
 ##
 # Con 
 ##
 
-fi <- data.frame(matrix(rep(0, (l-k + 1)^2), nrow = l-k + 1))
-for(j in 1:(l-k+1))
-  for(i in 1:j)
-    fi[i, j] <- choose((j-1), (i-1)) * p^(j-1)#((j-1)*p^(j-1))/(factorial(j-1)*factorial(1+i))
+# The probability from k to l start from k to l. The probability table has therefore to be taken from begining.
+fi_min <- fi[1:(len+1), 1:(len+1)]
+# Old calculation of fi:
+# 
+# fi <- data.frame(matrix(rep(0, (l-k + 1)^2), nrow = l-k + 1))
+# for(j in 1:(l-k+1))
+#   for(i in 1:j)
+#     fi[i, j] <- choose((j-1), (i-1)) * p^(j-1)#((j-1)*p^(j-1))/(factorial(j-1)*factorial(1+i))
 # Finally compute the expectation E[Mt_l|f(k)]:
-sum(df[, l-k+1] * fi[, l-k+1]) #Yeah it is a fucking matringale
+Mk[from, k]
+sum(df[, l-k+1] * fi_min[, l-k+1]) #Yeah it is a matringale
 
 ########################################
 # Create a 300 steps random walk

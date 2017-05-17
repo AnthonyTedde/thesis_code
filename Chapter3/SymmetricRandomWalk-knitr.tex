@@ -132,20 +132,19 @@ The following outcome present a randomly generated 300 steps symmetric random wa
 \begin{alltt}
 \hlcom{# Because squared matrix dim(y) = dim(x):}
 \hlstd{dim_x} \hlkwb{<-} \hlstd{dim_y} \hlkwb{<-} \hlnum{1}\hlopt{:}\hlstd{(k} \hlopt{+} \hlnum{1}\hlstd{)} \hlcom{# from 1 to k+1 because we start to time zero nonrandom which equal to zero}
-\hlstd{o} \hlkwb{<-} \hlkwd{outer}\hlstd{(dim_x, dim_y,} \hlkwc{FUN}\hlstd{=}\hlkwa{function}\hlstd{(}\hlkwc{r}\hlstd{,}\hlkwc{c}\hlstd{)\{(r}\hlopt{-}\hlstd{c)} \hlopt{+} \hlstd{(}\hlnum{1}\hlopt{-}\hlstd{c)\} )}
-\hlstd{to} \hlkwb{<-} \hlkwd{t}\hlstd{(o)}
-\hlstd{subset} \hlkwb{<-} \hlkwd{upper.tri}\hlstd{(to,} \hlkwc{diag} \hlstd{= T)}
-\hlstd{Mk} \hlkwb{<-} \hlstd{to} \hlopt{*} \hlstd{subset}
+\hlcom{# Create the symmetric random walk distribution:}
+\hlcom{# ifelse is vectorized and therefore is consistent with the using of outer which accept only vectorized function.}
+\hlstd{Mk} \hlkwb{<-} \hlkwd{outer}\hlstd{(dim_x,}
+           \hlstd{dim_y,}
+           \hlkwc{FUN}\hlstd{=}\hlkwa{function}\hlstd{(}\hlkwc{r}\hlstd{,}\hlkwc{c}\hlstd{)\{}\hlkwd{ifelse}\hlstd{(c}\hlopt{>=}\hlstd{r, (c}\hlopt{-}\hlstd{r)} \hlopt{-} \hlstd{(r}\hlopt{-}\hlnum{1}\hlstd{),} \hlnum{NA_integer_}\hlstd{)\})}
 \hlkwd{colnames}\hlstd{(Mk)} \hlkwb{<-} \hlkwd{paste0}\hlstd{(}\hlstr{"F("}\hlstd{,} \hlnum{1}\hlopt{:}\hlkwd{ncol}\hlstd{(Mk)} \hlopt{-} \hlnum{1}\hlstd{,} \hlstr{")"}\hlstd{)}
-\hlcom{# Transform Mk to better suit the table:}
-\hlstd{Mk_print} \hlkwb{<-} \hlkwd{apply}\hlstd{(Mk,} \hlnum{2}\hlstd{, as.character)}
+
 \hlcom{# Create the Tex Table > tabular}
-\hlstd{Mk.tab} \hlkwb{<-} \hlkwd{xtable}\hlstd{(Mk_print[}\hlnum{1}\hlopt{:}\hlnum{10}\hlstd{,} \hlnum{1}\hlopt{:}\hlnum{10}\hlstd{],} \hlkwc{digits} \hlstd{=} \hlnum{0}\hlstd{,} \hlkwc{format} \hlstd{=} \hlstr{"latex"}\hlstd{)}
-\hlkwd{align}\hlstd{(Mk.tab)} \hlkwb{<-} \hlkwd{rep}\hlstd{(}\hlstr{"r"}\hlstd{,} \hlnum{11}\hlstd{)}
+\hlstd{Mk.tab} \hlkwb{<-} \hlkwd{xtable}\hlstd{(Mk[}\hlnum{1}\hlopt{:}\hlnum{10}\hlstd{,} \hlnum{1}\hlopt{:}\hlnum{10}\hlstd{],} \hlkwc{digits} \hlstd{=} \hlnum{0}\hlstd{,} \hlkwc{format} \hlstd{=} \hlstr{"latex"}\hlstd{)}
 \hlstd{Mk.tab}
 \end{alltt}
 \end{kframe}% latex table generated in R 3.4.0 by xtable 1.8-2 package
-% Wed May 17 11:00:34 2017
+% Wed May 17 16:12:39 2017
 \begin{table}[ht]
 \centering
 \begin{tabular}{rrrrrrrrrrr}
@@ -153,15 +152,15 @@ The following outcome present a randomly generated 300 steps symmetric random wa
  & F(0) & F(1) & F(2) & F(3) & F(4) & F(5) & F(6) & F(7) & F(8) & F(9) \\ 
   \hline
 1 & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 \\ 
-  2 & 0 & -1 & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 \\ 
-  3 & 0 & 0 & -2 & -1 & 0 & 1 & 2 & 3 & 4 & 5 \\ 
-  4 & 0 & 0 & 0 & -3 & -2 & -1 & 0 & 1 & 2 & 3 \\ 
-  5 & 0 & 0 & 0 & 0 & -4 & -3 & -2 & -1 & 0 & 1 \\ 
-  6 & 0 & 0 & 0 & 0 & 0 & -5 & -4 & -3 & -2 & -1 \\ 
-  7 & 0 & 0 & 0 & 0 & 0 & 0 & -6 & -5 & -4 & -3 \\ 
-  8 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & -7 & -6 & -5 \\ 
-  9 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & -8 & -7 \\ 
-  10 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & -9 \\ 
+  2 &  & -1 & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 \\ 
+  3 &  &  & -2 & -1 & 0 & 1 & 2 & 3 & 4 & 5 \\ 
+  4 &  &  &  & -3 & -2 & -1 & 0 & 1 & 2 & 3 \\ 
+  5 &  &  &  &  & -4 & -3 & -2 & -1 & 0 & 1 \\ 
+  6 &  &  &  &  &  & -5 & -4 & -3 & -2 & -1 \\ 
+  7 &  &  &  &  &  &  & -6 & -5 & -4 & -3 \\ 
+  8 &  &  &  &  &  &  &  & -7 & -6 & -5 \\ 
+  9 &  &  &  &  &  &  &  &  & -8 & -7 \\ 
+  10 &  &  &  &  &  &  &  &  &  & -9 \\ 
    \hline
 \end{tabular}
 \end{table}
@@ -222,6 +221,56 @@ To show the martingale property we have to show that the expectation of the symm
 \end{kframe}
 \end{knitrout}
 
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+ \hlcom{##}
+\hlcom{# Expectation of Mt_l at k}
+\hlcom{# denoted by: E[Mt_l|f(k)], with k < l}
+\hlcom{##}
+\hlcom{##}
+\hlcom{# Variables}
+\hlcom{##}
+\hlstd{from} \hlkwb{<-} \hlnum{2} \hlcom{# Departure of the Expectation}
+\hlstd{k} \hlkwb{<-} \hlnum{4} \hlcom{# To get the filtration point }
+\hlstd{l} \hlkwb{<-} \hlnum{19} \hlcom{# Give the period to be expected}
+\hlkwa{if}\hlstd{(k}\hlopt{>}\hlstd{l)}
+\hlstd{interval} \hlkwb{<-} \hlstd{l}\hlopt{-}\hlstd{k}
+\hlcom{##}
+\hlcom{# Partionated Symmetric Random Walk}
+\hlcom{##}
+\hlcom{# first the value of M at time $k$ has to be set. It means that the value at this time $k$ is not yet random but resolved.}
+\hlcom{# Therefore at time $k$ the variable $M_k$ is not random. }
+\hlcom{# We can take any value we want to start with from 1 to $k + 1$.}
+\hlcom{# I choose to name this variable $from$:}
+\hlstd{from} \hlkwb{<-} \hlnum{2} \hlcom{# Departure of the Expectation}
+\hlcom{# The lenght of the path is already know: $(l - k)$:}
+\hlstd{len} \hlkwb{<-} \hlstd{l} \hlopt{-} \hlstd{k}
+\hlstd{i} \hlkwb{<-} \hlstd{from}\hlopt{:}\hlstd{(from} \hlopt{+} \hlstd{len)}
+\hlstd{j} \hlkwb{<-} \hlstd{k}\hlopt{:}\hlstd{l}
+\hlstd{df} \hlkwb{<-} \hlstd{Mk[i, j]}
+\hlcom{# names(df) <- sapply(1:ncol(df), function(x)\{paste0("X",x)\})}
+\hlcom{##}
+\hlcom{# Con }
+\hlcom{##}
+
+\hlcom{# The probability from k to l start from k to l. The probability table has therefore to be taken from begining.}
+\hlstd{fi_min} \hlkwb{<-} \hlstd{fi[}\hlnum{1}\hlopt{:}\hlstd{(len}\hlopt{+}\hlnum{1}\hlstd{),} \hlnum{1}\hlopt{:}\hlstd{(len}\hlopt{+}\hlnum{1}\hlstd{)]}
+\hlcom{# Old calculation of fi:}
+\hlcom{# }
+\hlcom{# fi <- data.frame(matrix(rep(0, (l-k + 1)^2), nrow = l-k + 1))}
+\hlcom{# for(j in 1:(l-k+1))}
+\hlcom{#   for(i in 1:j)}
+\hlcom{#     fi[i, j] <- choose((j-1), (i-1)) * p^(j-1)#((j-1)*p^(j-1))/(factorial(j-1)*factorial(1+i))}
+\hlcom{# Finally compute the expectation E[Mt_l|f(k)]:}
+\hlstd{Mk[from, k]} \hlopt{==} \hlkwd{sum}\hlstd{(df[, l}\hlopt{-}\hlstd{k}\hlopt{+}\hlnum{1}\hlstd{]} \hlopt{*} \hlstd{fi_min[, l}\hlopt{-}\hlstd{k}\hlopt{+}\hlnum{1}\hlstd{])} \hlcom{#Yeah it is a matringale}
+\end{alltt}
+\begin{verbatim}
+## F(3) 
+## TRUE
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
 
 
 

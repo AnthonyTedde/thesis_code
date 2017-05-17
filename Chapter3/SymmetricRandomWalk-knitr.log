@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.10)  17 MAY 2017 11:00
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.10)  17 MAY 2017 16:12
 entering extended mode
 **./SymmetricRandomWalk-knitr.tex
 (SymmetricRandomWalk-knitr.tex
@@ -255,47 +255,46 @@ Overfull \hbox (197.4814pt too wide) in paragraph at lines 134--134
 ndom which equal to zero[][] 
  []
 
+
+Overfull \hbox (249.98094pt too wide) in paragraph at lines 136--136
+[][]\OT1/cmtt/m/it/10 # ifelse is vectorized and therefore is consistent with t
+he using of outer which accept only vectorized function.[][] 
+ []
+
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 135.
-LaTeX Font Info:    Try loading font information for OMS+cmtt on input line 135
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 137.
+LaTeX Font Info:    Try loading font information for OMS+cmtt on input line 139
 .
 (C:/PROGRA~1/R/R-34~1.0/share/texmf/tex/latex\omscmtt.fd
 File: omscmtt.fd 
 )
 LaTeX Font Info:    Font shape `OMS/cmtt/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 135.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 139.
 
-Overfull \hbox (11.99689pt too wide) in paragraph at lines 143--143
-[][]\OT1/cmtt/m/n/10 Mk.tab[] []<-[] []xtable[][](Mk_print[[][]1[][]:[][]10[][]
-,[] []1[][]:[][]10[][]],[] []digits[] []=[] []0[][],[] []format[] []=[] []"late
-x"[][])[][] 
- []
-
-
-Underfull \vbox (badness 10000) detected at line 147
- []
-
-
-Overfull \vbox (0.11525pt too high) detected at line 147
+Overfull \hbox (27.24687pt too wide) in paragraph at lines 139--139
+[]           []\OT1/cmtt/m/n/10 FUN[][]=[][]function[][]([][]r[][],[][]c[][])\O
+MS/cmsy/m/n/10 f[][]\OT1/cmtt/m/n/10 ifelse[][](c[][]>=[][]r, (c[][]-[][]r)[] [
+]-[] [](r[][]-[][]1[][]),[] []NA_integer_[][])\OMS/cmsy/m/n/10 g\OT1/cmtt/m/n/1
+0 )[][] 
  []
 
 [2 <./figure/unnamed-chunk-4-1.pdf>]
-Package color Info: Redefining color shadecolor on input line 171.
+Package color Info: Redefining color shadecolor on input line 170.
 
-Overfull \hbox (13.733pt too wide) in paragraph at lines 173--173
+Overfull \hbox (13.733pt too wide) in paragraph at lines 172--172
 [][]\OT1/cmtt/m/it/10 # compute the probability measure to apply on the Random 
 Variable Mk[][] 
  []
 
-Package color Info: Redefining color shadecolor on input line 182.
+Package color Info: Redefining color shadecolor on input line 181.
 
-Overfull \hbox (55.73264pt too wide) in paragraph at lines 193--193
+Overfull \hbox (55.73264pt too wide) in paragraph at lines 192--192
 [][]\OT1/cmtt/m/it/10 # For the sake of visibility the limit of X axis has been
  set to [-100, 100][][] 
  []
 
 
-Overfull \hbox (10.52689pt too wide) in paragraph at lines 203--203
+Overfull \hbox (10.52689pt too wide) in paragraph at lines 202--202
 []\OT1/cmtt/m/n/10 ## Warning: Removed 200 rows containing missing values (geom
 []path).[] 
  []
@@ -304,37 +303,65 @@ Overfull \hbox (10.52689pt too wide) in paragraph at lines 203--203
 File: figure/unnamed-chunk-7-1.pdf Graphic file (type pdf)
 
 <use figure/unnamed-chunk-7-1.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-7-1.pdf used on input line 204.
+Package pdftex.def Info: figure/unnamed-chunk-7-1.pdf used on input line 203.
 (pdftex.def)             Requested size: 345.0pt x 345.00414pt.
 
-Overfull \hbox (15.0pt too wide) in paragraph at lines 204--205
+Overfull \hbox (15.0pt too wide) in paragraph at lines 203--204
 [][] 
  []
 
 [3]
-Package color Info: Redefining color shadecolor on input line 218.
- [4 <./figure/unnamed-chunk-7-1.pdf>] (SymmetricRandomWalk-knitr.aux) ) 
+Package color Info: Redefining color shadecolor on input line 217.
+Package color Info: Redefining color shadecolor on input line 225.
+
+Overfull \hbox (297.23053pt too wide) in paragraph at lines 242--242
+[][]\OT1/cmtt/m/it/10 # first the value of M at time $k$ has to be set. It mean
+s that the value at this time $k$ is not yet random but resolved.[][] 
+ []
+
+LaTeX Font Info:    Font shape `OMS/cmtt/m/it' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 252.
+
+Overfull \hbox (239.48103pt too wide) in paragraph at lines 257--257
+[][]\OT1/cmtt/m/it/10 # The probability from k to l start from k to l. The prob
+ability table has therefore to be taken from begining.[][] 
+ []
+
+
+Overfull \hbox (160.73172pt too wide) in paragraph at lines 264--264
+[][]\OT1/cmtt/m/it/10 #     fi[i, j] <- choose((j-1), (i-1)) * p^(j-1)#((j-1)*p
+^(j-1))/(factorial(j-1)*factorial(1+i))[][] 
+ []
+
+
+Overfull \hbox (45.23273pt too wide) in paragraph at lines 266--266
+[][]\OT1/cmtt/m/n/10 Mk[from, k][] []==[] []sum[][](df[, l[][]-[][]k[][]+[][]1[
+][]][] []*[] []fi_min[, l[][]-[][]k[][]+[][]1[][]])[] []\OT1/cmtt/m/it/10 #Yeah
+ it is a matringale[][] 
+ []
+
+[4 <./figure/unnamed-chunk-7-1.pdf>] [5] (SymmetricRandomWalk-knitr.aux) ) 
 Here is how much of TeX's memory you used:
- 2539 strings out of 493324
- 33701 string characters out of 3139432
+ 2540 strings out of 493324
+ 33717 string characters out of 3139432
  100730 words of memory out of 3000000
- 6033 multiletter control sequences out of 15000+200000
+ 6034 multiletter control sequences out of 15000+200000
  6280 words of font info for 26 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 39i,8n,26p,311b,294s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/User
-Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/UserPrograms/
-MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/UserPrograms/MiKTeX 2.
-9/fonts/type1/public/amsfonts/cm/cmitt10.pfb><C:/UserPrograms/MiKTeX 2.9/fonts/
-type1/public/amsfonts/cm/cmmi10.pfb><C:/UserPrograms/MiKTeX 2.9/fonts/type1/pub
-lic/amsfonts/cm/cmmi7.pfb><C:/UserPrograms/MiKTeX 2.9/fonts/type1/public/amsfon
-ts/cm/cmr10.pfb><C:/UserPrograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7
-.pfb><C:/UserPrograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/
-UserPrograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/UserProgr
-ams/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on SymmetricRandomWalk-knitr.pdf (4 pages, 127482 bytes).
+ 39i,8n,26p,339b,294s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/U
+serPrograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/UserProgra
+ms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/UserPrograms/MiKTeX
+ 2.9/fonts/type1/public/amsfonts/cm/cmitt10.pfb><C:/UserPrograms/MiKTeX 2.9/fon
+ts/type1/public/amsfonts/cm/cmmi10.pfb><C:/UserPrograms/MiKTeX 2.9/fonts/type1/
+public/amsfonts/cm/cmmi7.pfb><C:/UserPrograms/MiKTeX 2.9/fonts/type1/public/ams
+fonts/cm/cmr10.pfb><C:/UserPrograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
+mr7.pfb><C:/UserPrograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><
+C:/UserPrograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/UserPr
+ograms/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on SymmetricRandomWalk-knitr.pdf (5 pages, 132751 bytes).
 PDF statistics:
- 69 PDF objects out of 1000 (max. 8388607)
+ 72 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
