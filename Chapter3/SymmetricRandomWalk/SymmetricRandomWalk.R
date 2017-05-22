@@ -170,14 +170,17 @@ sum(df[, l-k+1] * fi_min[, l-k+1]) #Yeah it is a matringale
 ########################################
 # Create a 300 steps random walk
 ########################################
-size <- 3000
-spread <- 300000
+# Empirical distribution based on a series of outcomes of symmetric random walk
+k <- size <- 3000
+# n is the number of case
+n <- spread <- 300000
 Xs <- list()
 for(i in 1:spread)
   Xs[[i]] <- sample(x = c(-1, 1),
                     replace = T,
                     prob = c(p, q),
                     size = size)
+lapply(Xs, sample, x = c(-1,1), replace = T, prob = c(p, q), size = k)
 
 Wn <- vector()
 for(i in 1:spread)

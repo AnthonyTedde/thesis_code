@@ -202,8 +202,5 @@ Mk[from, k] == sum(df[, l-k+1] * fi_min[, l-k+1]) #Yeah it is a matringale
 
 @
 
-
-
- 
-           
+   
 \end{document}
