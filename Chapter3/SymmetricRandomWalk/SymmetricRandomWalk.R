@@ -1,4 +1,3 @@
-
 # Probability measure:
 p <- 1/2
 q <- 1 - p
@@ -32,10 +31,9 @@ M_k <- c(0,
 ##
 # Check by plot
 ##
-png(filename = 'SymmetricRandomWalk.png')
 plot(M_k,
      type = 'l')
-dev.off()
+
 
 ################################################################################
 # Creation of a 300 steps random walk
@@ -85,7 +83,6 @@ fi <- outer(dim_x,
 # Graph of the Theoretical distribution
 ##
 
-png(filename = 'SymmRandWalkTheoretiaclDistrib.png')
 range <- 1:ncol(Mk)
 lastToss <- ncol(Mk)
 # Using plot
@@ -108,7 +105,6 @@ ggplot(data = distributionSymRanWal, aes(Value, Frequency)) +
 
 
 
-dev.off()
 
 ################################################################################
 # Check the martingale property of symmetric random walk.
@@ -185,12 +181,20 @@ lapply(Xs, sample, x = c(-1,1), replace = T, prob = c(p, q), size = k)
 Wn <- vector()
 for(i in 1:spread)
   Wn[i] <- sum(Xs[[i]])
-png(filename = 'RandomWalkDistribution.png')
 
 hist(Wn)
-dev.off()
 
+# Increments:
 
+# Table of increments (one by one:)
+X
+# Xk is the possible outcome of the random variable X:
+Xk <- c(1, -1)
+# Expectation:
+Ex <- weighted.mean(Xk, c(p, q))
+Ex.square <- weighted.mean(Xk^2, c(p, q))
+# Variance
+S <- Ex.square - Ex^2
 
 
 

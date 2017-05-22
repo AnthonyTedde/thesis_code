@@ -90,12 +90,15 @@ M_k <- c(0,
 colnames(df_Mk) <- c('x', 'y')
 
 # Plot
-ggplot(data = df_Mk, aes(x, y)) + 
-  geom_line() +
-  xlab("Time") + ylab("SRW") +
-  theme_minimal() + 
-  theme(text = element_text(family="CM Roman"),
-        axis.title = element_text(face = "plain"))
+(
+  SymRandWalk_graph <- ggplot(data = df_Mk, aes(x, y)) +
+    geom_line() +
+    xlab("Time") + ylab("SRW") +
+    theme_minimal() +
+    theme(text = element_text(family = "CM Roman"),
+          axis.title = element_text(face = "plain"))
+)
+
 @
 
 
@@ -202,5 +205,75 @@ Mk[from, k] == sum(df[, l-k+1] * fi_min[, l-k+1]) #Yeah it is a matringale
 
 @
 
+\section{Increments of symmetric random walk}
+\begin{equation}
+M_{k_{i+1}} - M_{K_i} = \sum_{j = k_{i+1}}^{k_{i+1}} X_j = X_{k_{i+1}}
+\end{equation}
+
+
+
+<<>>=
+# Display the graph:
+SymRandWalk_graph
+@
+
+The previous graph has the following first 10 increments:
+
+<<results='asis'>>=
+X_tab <- rbind(X)
+colnames(X_tab) <- paste0("F(", 1:300, ")")
+xtable(X_tab, digits = 0)
+@
+
+
+\subsection{Expectation and Variance of increments}
+
+\begin{equation}
+\mathop{\mathbb{E}}[X_j] = 0 \Rightarrow \mathop{\mathbb{E}}[M_{k_{i+1}} - M_{k_i}] = 0
+\end{equation}
+
+\begin{equation}
+Var(M_{k_{i+1}}) - M_{k_i}) = k_{i+1} - K_i
+\end{equation}
+
+<<>>=
+# Xk is the possible outcome of the random variable X:
+Xk <- c(1, -1)
+# Expectation:
+Ex <- weighted.mean(Xk, c(p, q))
+Ex.square <- weighted.mean(Xk^2, c(p, q))
+# Variance
+S <- Ex.square - Ex^2
+@
+
+To find the variance the following formula has been used:
+\begin{equation}
+\begin{array}{lll}
+Var(X) & = & \mathop{\mathbb{E}}(X - \mu)^2 \\
+& = & \mathop{\mathbb{E}}X^2 + \mu^2 - 2\mu^2 = \mathop{\mathbb{E}}X^2 - \mu^2
+\end{array}
+\end{equation}
+
    
 \end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
