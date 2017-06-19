@@ -26,7 +26,7 @@ q <- 1 - p
 #
 # To access the content of this folder, the variable figure could be used for:
 #
- figure <- paste(getwd(), 'Chapter3', 'figure', sep = '/')
+figure <- paste(getwd(), 'Chapter3', 'figure', sep = '/')
 
 #
 # Definition of the symmetric random walk
@@ -40,9 +40,8 @@ q <- 1 - p
 #
 # Both will be use full for finding expectation and variance theoterically or empirically
 #
-k <- 300
-asize <- 3000
-M <- 0
+k <- 3000
+asize <- 75000
 
 ###################################
 # Empirical Symmetric Random Walk #
@@ -68,31 +67,61 @@ pdf(file = file)
 plot(Mk,
      type = 'l')
 dev.off()
-
+#
 ######################################################
 # Create an array of (3000) steps sample random walk #
 ######################################################
 #
-# Empirical distribution based on a series of outcomes of symmetric random walk
-k <- 3000
-# n is the number of case
-asize <- 300000
-Xs <- list()
-for(i in 1:asize)
-  Xs[[i]] <- sample(x = c(-1, 1),
-                    replace = T,
-                    prob = c(p, q),
-                    size = k)
-lapply(1:2, FUN = function(x){})
-list()
+#   *[Mkr] Array of [asize] number of Symmetric Random Walk
+#
+Mkr <- matrix(data = sample(x = c(-1, 1),
+                            replace = T,
+                            prob = c(p, q),
+                            size = k*asize),
+              nrow = asize,
+              ncol = k
+)
+ 
+#
+# Calculate the empirical distribution
+# First by computing the Expectation
+#
+#   *[Mki] : Array containing the final step of the random work at time F(T)
+#   *[Empir] :  Empirical expectation of Symmetric Random Walk. 
+#             [Mki] contains a sample of symmetric Random Value for time = T
+#             To compute the expectation I only use the function *mean* on [Mki]
+#               According to the martingale properties of Symmetric Random Walk
+#             E[M[T] | 0] = E[M[T]] = M[0] = 0
+#
+Mki <- rowSums(Mkr)
+Empir <- mean(Mki)
 
-Wn <- vector()
-for(i in 1:asize)
-  Wn[i] <- sum(Xs[[i]])
+#
+# Plot the distribution
+#
+#   * [Mkd] : Matrix that contains:
+#     * [RandomValue] : Random variable in which are store some value of 
+#                       the Tth step of the Symmetric Random Walk
+#     * [Frequency] : The frequency of each value before aggregation
+#   * [MkHistogramFormated] : Aggregate version of Mkd 
+#                             (group by is made from [RandomValue])
+#
+Mkd <- cbind(RandomValue = Mki, 
+             Frequency = 1/length(Mki))
+MkHistogramFormated <- aggregate(Frequency ~ RandomValue, Mkd, sum)
 
-hist(Wn)
+file <- paste(figure, 'EmpiricalDistribution.pdf', sep = '/')
 
+pdf(file = file)
+ggplot(as.data.frame(Mkd), aes(RandomValue)) +
+  geom_histogram(aes(y = (..count..)/sum(..count..)),
+                 binwidth = 10) +
+  scale_y_continuous(labels = scales::percent)
+dev.off()
+  
+#
 # Increments:
+#
 
 # Table of increments (one by one:)
 X
