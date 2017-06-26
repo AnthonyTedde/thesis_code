@@ -4,12 +4,20 @@
 #                           #
 #############################
 #
-#   * [t0]: Beginning of the period
-#   * [t1]: End of the periodod
-#   * [S0]: Price of the stock at t0 (Deterministic variable)
-#   * [S1]: Price of the stock at t1 (Random variable) can take 2 states:
-#     + [S1H]: If coin toss results to HEAD
-#     + [S1T]: If coin toss results to TAIL
+#   * [period]: Vector which start from the beginning of the period
+#               throught maturity and is divided into partitions.
+#         Example: (0, 1, 2, 3, 4, 5, 6):
+#           -> Beginning of the period: 0
+#           -> End of the period: 6
+#           -> divided into 7 partitions from one period each.
+#
+#   * [stockPricePath]: Vector that containts all stock price available for 
+#                       each period according to vector [period].
+#                       Values inside for the one period binomial model are:
+#           -> S0 (Deterministic)
+#           -> S1 (Random) could take S1_T, S1H
+#     This variable will be stored inside a [2*2] {data.frame}
+#
 #   * [u]: Up-factor
 #   * [d]: Down-factor. Could not be less that 0 because otherwise
 #          There is an arbitrage opportunity
@@ -52,8 +60,10 @@ runArbitrage_babyRun <- function(d, u, r){
 ############################
 # Variables Initialisation #
 ############################
-t0      <- 0
-t1      <- 1
+period <- c(0, 1)
+#
+# Though S0 is not used otherwise the value setup here permits to initialize
+# the [stockPricePath[ data.frame defined below
 S0      <- 4
 k       <- 5
 u       <- 2
@@ -65,10 +75,33 @@ delta0  <- 0.5
 ##
 # Computed value - Do not touch it even if you are a Jedi
 #
-S1H <- u * S0
-S1T <- d * S0
+#
+# [stockPricePath_f]: function used in outer to compute the leaf value of the
+#                     stock price path
+#
+stockPricePath_f = function(i, j){
+  ifelse(j >= i, 
+         u ^(j - i) * d^(i - 1) * S0, 
+         NA_integer_)
+}
+#
+# stockPricePath Variable
+stockPricePath <- outer(period + 1, 
+                        period + 1, 
+                        stockPricePath_f)
+#
+# Actual probability q
 q <- 1 - p
+#
+# downfactor if not already initialized.
 if(!exists('d')) d <- 1/u
+#
+# For the sake of clarity we will define:
+#
+#   * [S0] = stockPricePath[1, 1]
+#   * [S1H] = stockPricePath[1, 2]
+#   * [S1T] = stockPricePath[2, 2]
+
 
 ##
 # Check the no arbitrage properties based on rule (1.1.2 - page2)
@@ -77,8 +110,8 @@ if(!exists('d')) d <- 1/u
 #
 if(
   0 < d &
-    d < (1 + r) &
-    (1 + r) < u
+  d < (1 + r) &
+  (1 + r) < u
 ) print("According to declared varible no arbitrage opportunity exhibit.") else
   runArbitrage_babyRun()
 
@@ -157,8 +190,7 @@ if(
 #
 # An example using the values defined just above.
 # Reminder of the value associated to the different variables:
-#     * t0      <- 0
-#     * t1      <- 1
+#     * period  <- c(0,1)
 #     * S0      <- 4
 #     * k       <- 5
 #     * u       <- 2
@@ -193,8 +225,8 @@ if(
 #     * ['H']: If the coin toss result to head
 #     * ['T']: If the coin toss result to tail
 #
-LongPosition <- c('H' = max(S1H - k, 0),
-                  'T'= max(S1T - k, 0))
+LongPosition  <- c('H' = max(S1H - k, 0),
+                   'T'= max(S1T - k, 0))
 ShortPosition <- c('H' = min(k - S1H, 0),
                    'T' = min(k - S1T, 0))
 #
@@ -213,7 +245,7 @@ ShortPosition <- c('H' = min(k - S1H, 0),
 # At time zero the value of the portfolio is:
 #  (This is the only value which is not random)
 #
-InitialPortfolioValue <- X0 - delta0 * S0
+InitialPortfolioValue <- X0 - delta0 * stockPricePath[1,1]
 
 # At Time one if the coin toss results to head/tail we get 
 # (as holder of short position):
@@ -264,7 +296,7 @@ if ( identical(PortfolioValue, -1 * ShortPosition) )
 #
 # Other though possibly random are knowns and are used as independent variables
 # to model the hedge:
-#   * [S0]: 
+#   * [S0]: stockPricePath[1,1]
 #   * [S1]: 
 #   * [V0]: 
 #   * [V1]: 
@@ -283,7 +315,7 @@ if ( identical(PortfolioValue, -1 * ShortPosition) )
 # One first starts with initial wealth [X0] and would buy a certain amount
 # of share of stock [delta0]. This operation let him with a cash position of:
 #
-#   [cashPosition[T0]]: X0 - delta0 * S0
+#   [cashPosition[T0]]: X0 - delta0 * stockPricePath[1,1]
 #
 #   *[X0]: is unknown
 #   *[delta0]: is unknown
@@ -299,25 +331,3 @@ if ( identical(PortfolioValue, -1 * ShortPosition) )
 #
 #   [portfolioValue[T1]] = (1+r) * X0 + delta0 * (S1 - (1+r) * S0)
 #
-pvh <- (1+r) * X0 + delta0 * (S1H - (1+r) * S0)
-pvt <- (1+r) * X0 + delta0 * (S1T - (1+r) * S0)
-
-portfolioValue <- matrix(data = c(pvh, pvt),
-                         dimnames = list(c(t1),
-                                         c('H', 'T')))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
