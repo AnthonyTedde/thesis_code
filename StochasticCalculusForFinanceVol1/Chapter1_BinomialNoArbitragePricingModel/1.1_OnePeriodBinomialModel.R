@@ -249,9 +249,62 @@ if ( identical(PortfolioValue, -1 * ShortPosition) )
 #
 # To hedge the long position one have only to do the reverse of the previous
 # strategy
+#
 
+############################
+# Hedging strategy's eq.   #
+############################
+#
+# Here the equations to place a hedge for short and long position are developped
+# First the variable used to model the hegde has to be defined.
+#
+# Some are unknowns
+#   * [X0]: Initial wealth
+#   * [delta0]: 
+#
+# Other though possibly random are knowns and are used as independent variables
+# to model the hedge:
+#   * [S0]: 
+#   * [S1]: 
+#   * [V0]: 
+#   * [V1]: 
+#   * [u]: 
+#   * [d]: 
+#   * [r]: 
+#   * [k]: 
+#   * [deltaNeutralProbability]: 
+#
+# The basis of the model is that X0 must equal V0 to conclude that the hedge
+# works.
 
+##
+# First: Hedge of the short position in the option.
+#
+# One first starts with initial wealth [X0] and would buy a certain amount
+# of share of stock [delta0]. This operation let him with a cash position of:
+#
+#   [cashPosition[T0]]: X0 - delta0 * S0
+#
+#   *[X0]: is unknown
+#   *[delta0]: is unknown
+#   *[S0]: is known
+#
+# The prevours initial cash position would be invested (if positive) or borrowed
+# (if negative) from the money market. This would let him with a [portfolioValue] 
+# at T1:
+#
+#   [portfolioValue[T1]] = (delta0 * S1) + (1+r)(X0 - delta0 * S0) 
+#
+# The previous formula could be rewrite as:
+#
+#   [portfolioValue[T1]] = (1+r) * X0 + delta0 * (S1 - (1+r) * S0)
+#
+pvh <- (1+r) * X0 + delta0 * (S1H - (1+r) * S0)
+pvt <- (1+r) * X0 + delta0 * (S1T - (1+r) * S0)
 
+portfolioValue <- matrix(data = c(pvh, pvt),
+                         dimnames = list(c(t1),
+                                         c('H', 'T')))
 
 
 
