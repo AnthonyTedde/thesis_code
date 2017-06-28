@@ -1,11 +1,11 @@
-##
+######################################################################
 #
 # Chapter 3 > 3.2 Scaled symmetric random walk
 #
 # TODO: section: Create an array of (3000) steps sample random walk
 # Work to find a solution for functionnal way of doing the stuff
 #
-##
+######################################################################
 
 #
 # Library
@@ -67,12 +67,12 @@ pdf(file = file)
 plot(Mk,
      type = 'l')
 dev.off()
+
+#######################################################
+# Create an array of [3000 steps] sample random walks #
+#######################################################
 #
-######################################################
-# Create an array of (3000) steps sample random walk #
-######################################################
-#
-#   *[Mkr] Array of [asize] number of Symmetric Random Walk
+#   * [Mkr]: Array of [asize] number of Symmetric Random Walk
 #
 Mkr <- matrix(data = sample(x = c(-1, 1),
                             replace = T,
@@ -86,13 +86,21 @@ Mkr <- matrix(data = sample(x = c(-1, 1),
 # Calculate the empirical distribution
 # First by computing the Expectation
 #
-#   *[Mki] : Array containing the final step of the random work at time F(T)
-#   *[Empir] :  Empirical expectation of Symmetric Random Walk. 
+#   *[Mki]: Array containing the final step of the random work at time F(T)
+#           Only all the finals steps are keeping inside the new array
+#           because the expectation computed is the following:
+#           E[M_T|F(0)] -> The expectation of the value at time T computed from
+#                           t = 0
+#
+#   *[Empir]:  Empirical expectation of Symmetric Random Walk. 
 #             [Mki] contains a sample of symmetric Random Value for time = T
 #             To compute the expectation I only use the function *mean* on [Mki]
 #               According to the martingale properties of Symmetric Random Walk
 #             E[M[T] | 0] = E[M[T]] = M[0] = 0
 #
+#
+#   rowSums is used to compute the accumulated value of the random walk
+#   from t=0 to t=T
 Mki <- rowSums(Mkr)
 Empir <- mean(Mki)
 
@@ -100,14 +108,21 @@ Empir <- mean(Mki)
 # Plot the distribution
 #
 #   * [Mkd] : Matrix that contains:
-#     * [RandomValue] : Random variable in which are store some value of 
-#                       the Tth step of the Symmetric Random Walk
-#     * [Frequency] : The frequency of each value before aggregation
+#     * [RandomValue] : Random variable in which are stored the accumulated values of 
+#                       the Tth step of  all the Symmetric Random Walks
+#
+#     * [Frequency] : The frequency of each value before aggregation. Indeed
+#                     before aggregate the values, all have the same occurence.
+#
 #   * [MkHistogramFormated] : Aggregate version of Mkd 
 #                             (group by is made from [RandomValue])
 #
 Mkd <- cbind(RandomValue = Mki, 
              Frequency = 1/length(Mki))
+#
+# The following variable is the aggregation of the Frequency by RandomValue.
+# It could be used with other plot engine that ggplot with geom_histogram
+# where the aggregation is automated.
 MkHistogramFormated <- aggregate(Frequency ~ RandomValue, Mkd, sum)
 
 file <- paste(figure, 'EmpiricalDistribution.pdf', sep = '/')
@@ -119,21 +134,6 @@ ggplot(as.data.frame(Mkd), aes(RandomValue)) +
   scale_y_continuous(labels = scales::percent)
 dev.off()
   
-#
-# Increments:
-#
-
-# Table of increments (one by one:)
-X
-# Xk is the possible outcome of the random variable X:
-Xk <- c(1, -1)
-# Expectation:
-Ex <- weighted.mean(Xk, c(p, q))
-Ex.square <- weighted.mean(Xk^2, c(p, q))
-# Variance
-S <- Ex.square - Ex^2
-
- 
 ############################ 
 # Theoretical distribution #
 ############################ 
@@ -141,6 +141,12 @@ S <- Ex.square - Ex^2
 #  *[Mt]: Stands for Theoretically Symm. Random Walk
 # 
 # The array (data.frame) used to store all the value that the variable Mt could take according to the path has a dimension dim_x * dim_y
+#
+# IMPORTANT NOTE: Due to precision issue, the variable k (which denotes the number of step
+#       into the brownian motion) must be fixed at 1000 maximum. The issue occurs when
+#       using the *choose* function in order to compute the distribution values.
+#
+k <- 1000
 dim_x <- dim_y <- 1:(k + 1)
 Mt <- outer(dim_x, 
            dim_y, 
@@ -155,6 +161,11 @@ Mt <- outer(dim_x,
 fi <- outer(dim_x,
            dim_y,
            FUN = function(i, j){choose((j-1), (j-i)) * p^(j-1)})
+# CHECK: A rapid check to see if the variable [fi] contains probability by col.
+#   We just have to sum up the data col by col and ensure that it provides the value 1.
+#
+# *round* function is only use to prevent round issue.
+if(round(mean(colSums(fi))) == 1) print("Ok the sum of the whole sample set OMEGA equal ONE :)")
 
 ##
 # Graph of the Theoretical distribution
@@ -163,7 +174,9 @@ fi <- outer(dim_x,
 #   * [DistributionSymRanWal]: data.frame wich contains two columns:
 #     + [Value] All the possible value that the random walk could take at time = k (after k coin tosses)
 #     + [Frequency] The associated probability
+#
 #   * [range]: Number of possibility of value for the random variable at t = k
+#
 #   * [lastToss]: Only the last coin toss is interesting to graph the distribution
 #
 range <- dim_x
@@ -185,10 +198,25 @@ ggplot(data = distributionSymRanWal, aes(Value, Frequency)) +
 
 dev.off()
 
+############################ 
+# Increments               #
+############################ 
+
+# Table of increments of the Symmetric Random Walk designed abovoe (Mk)
+X
+# Xk is the possible outcome of the random variable X:
+Xk <- c(1, -1)
+# Expectation:
+Ex <- weighted.mean(Xk, c(p, q))
+Ex.square <- weighted.mean(Xk^2, c(p, q))
+# Variance
+S <- Ex.square - Ex^2
+
 ###########################################################
 # Check the martingale property of symmetric random walk. #
 ###########################################################
 #
+# The martingale 
 # With l > k, show that:
 # E[Ml|F(k)] = Mk
 
