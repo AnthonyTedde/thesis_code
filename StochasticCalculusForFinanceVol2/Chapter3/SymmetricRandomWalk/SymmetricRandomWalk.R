@@ -26,7 +26,10 @@ q <- 1 - p
 #
 # To access the content of this folder, the variable figure could be used for:
 #
-figure <- paste(getwd(), 'Chapter3', 'figure', sep = '/')
+figure <- paste(getwd(),'StochasticCalculusForFinanceVol2', 
+                'Chapter3', 
+                'figure', 
+                sep = '/')
 
 #
 # Definition of the symmetric random walk
@@ -197,6 +200,17 @@ ggplot(data = distributionSymRanWal, aes(Value, Frequency)) +
   scale_x_continuous(limits = c(-100, 100))
 
 dev.off()
+
+# 
+# Expectation of Mt (Mk theoretical)
+#
+# Expectation must be equal to zero
+sum(Mt[,k+1] * fi[,k+1])
+
+#
+# Variance should equal k
+sum(Mt[,k+1]^2 * fi[,k+1])
+sum(Mt[1:10, 10]^2 * fi[1:10, 10])
 
 ############################ 
 # Increments               #
