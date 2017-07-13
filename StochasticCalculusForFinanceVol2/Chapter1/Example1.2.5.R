@@ -1,16 +1,12 @@
 #################################################################
 # Example 1.2.5: Another random variable uniformly distributed.
 ################################################################
+library(ggplot2)
 # W random variables included various value from 0 to one.
 # All UNIFORMALY distributed.
 W <- seq(from = 0,
          to = 1,
          by = .0001)
-# Expected value of random variable W:
-# n^-1 * sum(wi) or mean():
-mean(W)
-# using UNIFORM distribution.
-punif(W)[length(W) / 2]
 # 
 # Define the probability measure p & q
 p <- 1/2
@@ -19,6 +15,39 @@ q <- 1 - p
 expe <- 100000
 # Sample size:
 n <- 100
+
+##
+# Construction of the theoretical distribution of X
+#
+# Not consider the infinite sample space but instead a rather large one
+#
+#   * [n]: It gives the number of columns.
+#   * [2^n]: Gives the number of rows.
+##
+n <- 20
+Y <- expand.grid(
+  rep(
+    list(c(1,0)), 
+    n)
+)
+Y <- t(apply(Y, MARGIN = 1, FUN = function(x) x/2^(1:n)))
+X <- rowSums(Y)
+ordered_X <- sort(rowSums(Y), decreasing = T)
+
+distrib_X <- data.frame('X' = X, 
+                        'P' = 1/length(X),
+                        'F' = seq(1/length(X), 1, by = 1/length(X)))
+
+ggplot(distrib_X, aes(X, F)) +
+  geom_point()
+# Find the expected value:
+prob_X <- 1/length(X)
+sum(X * prob_X)
+
+##
+# Next: Convergence of Integrals.
+##
+
 # 
 # Y should be constructed according to some random experiment.
 Y = list()
