@@ -31,8 +31,7 @@ Y <- expand.grid(
     n)
 )
 Y <- t(apply(Y, MARGIN = 1, FUN = function(x) x/2^(1:n)))
-X <- rowSums(Y)
-ordered_X <- sort(rowSums(Y), decreasing = T)
+X <- sort(rowSums(Y), decreasing = T)
 
 distrib_X <- data.frame('X' = X, 
                         'P' = 1/length(X),
@@ -43,6 +42,24 @@ ggplot(distrib_X, aes(X, F)) +
 # Find the expected value:
 prob_X <- 1/length(X)
 sum(X * prob_X)
+
+#
+# mu[k/2^n, m/2^n] = m/2^n - k/2^n
+# -> looks like the Lebesgue measure over interval [0,1]
+#
+# For instance, take:
+#   * [m]: Numerator of the upper value of the closed interval
+#   * [k]: Numerator of the lower value of the closed interval
+#   * [n]: Same n as which one used to create the theoretical distribution
+#   * [mu]: Value of the Probability the one have a value inside the interval.
+#
+#   -> The value obtained will be futher tested over sample 
+#   -> The interval could be seen as quantile of the uniform probability measure
+#       (to be tested)
+#
+k = .25 * 2^n
+m = .75 * 2^n
+# -> which will give results for percentile .25 up to .75
 
 ##
 # Next: Convergence of Integrals.
