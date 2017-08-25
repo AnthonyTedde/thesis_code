@@ -1,8 +1,8 @@
-#############################
-#                           #
-# One-Period Binomial Model #
-#                           #
-#############################
+################################################################################
+#                                                                              #
+#                       One-Period Binomial Model                              #
+#                                                                              #
+################################################################################
 #
 #   * [period]: Vector which start from the beginning of the period
 #               throught maturity and is divided into partitions.
@@ -76,6 +76,7 @@ delta0  <- 0.5
 # Computed value - Do not touch it even if you are a Jedi
 #
 #
+d <- 1/u
 # [stockPricePath_f]: function used in outer to compute the leaf value of the
 #                     stock price path
 #
