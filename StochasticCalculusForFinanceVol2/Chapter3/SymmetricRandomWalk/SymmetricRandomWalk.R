@@ -58,6 +58,8 @@ X <- sample(x = c(-1, 1),
 )
 # 
 # Construction of the Empirical Random Walk
+# It corresponds to a ONE path Random Walk Adapted Stochactic Process.
+# Adapted to the filtration sigma(X)
 #
 Mk <- c(0, 
          sapply(seq_along(X), function(x){sum(X[1:x])}))
@@ -67,6 +69,34 @@ Mk <- c(0,
 ##
 file <- paste(figure, 'EmpiricalSymmetricRandomWalkSample.pdf', sep = '/')
 pdf(file = file)
+plot(Mk,
+     type = 'l')
+dev.off()
+
+##
+# Check several plots on same chart
+##
+randomWalkGenerator <- function(steps = 3000,
+                                prob = c(0.5, 0.5),
+                                n = 1){
+  x <- rep(list(c(-1, 1)), n)
+  lapply(x, 
+         sample, 
+         size = steps,
+         replace = T,
+         prob = prob)
+  X <- sample(x = c(-1, 1),
+              size = k,
+              replace = T,
+              prob = c(p, q)
+  )
+  (Mk <- c(0, 
+          sapply(seq_along(X), function(x){sum(X[1:x])}))
+  )
+}
+
+file <- paste(figure, 'EmpiricalSymmetricRandomWalkSeveral.pdf', sep = '/')
+ pdf(file = file)
 plot(Mk,
      type = 'l')
 dev.off()
