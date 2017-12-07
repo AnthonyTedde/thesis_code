@@ -11,6 +11,7 @@
 # Library
 #
 library(ggplot2)
+library(RandomWalk)
 
 #
 # Probability measure:
@@ -75,25 +76,13 @@ dev.off()
 
 ##
 # Check several plots on same chart
+# Package has been created: library(RandomWalk)
+# To create a unique random walk: randomWalk()
+# To create multiple random walk: randomWalkGenerator(n = xx) (see documentation)
 ##
-randomWalkGenerator <- function(steps = 3000,
-                                prob = c(0.5, 0.5),
-                                n = 1){
-  x <- rep(list(c(-1, 1)), n)
-  lapply(x, 
-         sample, 
-         size = steps,
-         replace = T,
-         prob = prob)
-  X <- sample(x = c(-1, 1),
-              size = k,
-              replace = T,
-              prob = c(p, q)
-  )
-  (Mk <- c(0, 
-          sapply(seq_along(X), function(x){sum(X[1:x])}))
-  )
-}
+#
+# Graphing a uniq path random walk using the library:
+rv <- randomWalk()
 
 file <- paste(figure, 'EmpiricalSymmetricRandomWalkSeveral.pdf', sep = '/')
  pdf(file = file)
