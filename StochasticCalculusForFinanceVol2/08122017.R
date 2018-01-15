@@ -9,7 +9,7 @@ library(cowplot)
 #
 rand_walk <- srwalk(time_to_maturity = 4,
                     seed = 1,
-                    scale = 100)
+                    scale = 1)
 
 ggplot(rand_walk, aes(time_periods, random_walk_path)) +
   geom_line()
